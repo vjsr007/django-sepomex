@@ -17,6 +17,6 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
-    path('sepomex/', include('sepomex.urls')),
+    path('', include('sepomex.urls')),
     path('admin/', admin.site.urls),
 ]
