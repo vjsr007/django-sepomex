@@ -1,5 +1,7 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from rest_framework import generics
+from .models import Usuario
+from .serializers import UsuarioSerializer
 
-def index(request):
-    return HttpResponse("Hello, world. You're at the sepomex index.")
+class ListUsuarioView(generics.ListAPIView):
+    queryset = Usuario.objects.all()
+    serializer_class = UsuarioSerializer
