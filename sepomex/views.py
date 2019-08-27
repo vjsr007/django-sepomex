@@ -7,7 +7,7 @@ def index(request):
     return JsonResponse({'foo':'bar'})
 
 def another(request):
-    return JsonResponse({'another':'response'})    
+    return JsonResponse({'another':'response'})
 
 class ListUsuarioView(generics.ListAPIView):
     queryset = Usuario.objects.all()

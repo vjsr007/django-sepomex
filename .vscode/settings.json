@@ -1,6 +1,20 @@
 {
     "cSpell.words": [
         "Foto",
-        "Recordarme"
-    ]
+        "Recordarme",
+        "ckpt",
+        "cmap",
+        "conv",
+        "dtype",
+        "getcwd",
+        "imshow",
+        "ksize",
+        "matmul",
+        "minist",
+        "mnist",
+        "pyplot",
+        "relu",
+        "sess"
+    ],
+    "python.pythonPath": "C:\\Program Files\\Python37\\python.exe"
 }
