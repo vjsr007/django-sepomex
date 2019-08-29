@@ -85,13 +85,13 @@ DATABASES = {
         'NAME': 'Intranet',
         'USER': '',
         'PASSWORD': '',
-        'HOST': 'VJ\SQLEXPRESS',
+        'HOST': 'US1253672W1',
         'PORT': '',
 
         'OPTIONS': {
             'driver': 'ODBC Driver 13 for SQL Server',
         },
-    }    
+    }
 }
 
 # set this to False if you want to turn off pyodbc's connection pooling
