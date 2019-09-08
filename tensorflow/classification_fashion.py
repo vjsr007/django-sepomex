@@ -2,7 +2,6 @@
 import warnings
 warnings.filterwarnings("ignore")
 
-import cv2
 import tensorflow as tf
 from tensorflow import keras
 import sys
@@ -59,7 +58,7 @@ fashion_mnist = keras.datasets.fashion_mnist
 
 # Test Image
 data = []
-img = image.load_img('tensorflow/images/sneaker01.jpg', target_size=(28,28,1), grayscale=True)
+img = image.load_img('tensorflow/images/shirt001.jpg')
 img = image.img_to_array(img)
 img = img/255
 data.append(img)
