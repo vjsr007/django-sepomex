@@ -8,7 +8,7 @@ import random
 import os
 print(os.listdir("catdog/input"))
 
-FAST_RUN = False
+FAST_RUN = True
 IMAGE_WIDTH=128
 IMAGE_HEIGHT=128
 IMAGE_SIZE=(IMAGE_WIDTH, IMAGE_HEIGHT)
