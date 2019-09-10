@@ -13,6 +13,7 @@ IMAGE_WIDTH=128
 IMAGE_HEIGHT=128
 IMAGE_SIZE=(IMAGE_WIDTH, IMAGE_HEIGHT)
 IMAGE_CHANNELS=3
+TRAIN = False
 
 filenames = os.listdir("catdog/input/train")
 categories = []
@@ -66,7 +67,7 @@ model.add(Dense(2, activation='softmax')) # 2 because we have cat and dog classe
 
 model.compile(loss='categorical_crossentropy', optimizer='rmsprop', metrics=['accuracy'])
 
-# model.summary()
+batch_size=15
 
 from keras.callbacks import EarlyStopping, ReduceLROnPlateau
 
@@ -92,7 +93,6 @@ validate_df['category'].value_counts().plot.bar()
 
 total_train = train_df.shape[0]
 total_validate = validate_df.shape[0]
-batch_size=15
 
 train_datagen = ImageDataGenerator(
     rotation_range=15,
@@ -135,43 +135,45 @@ example_generator = train_datagen.flow_from_dataframe(
     class_mode='categorical'
 )
 
-plt.figure(figsize=(12, 12))
-for i in range(0, 15):
-    plt.subplot(5, 3, i+1)
-    for X_batch, Y_batch in example_generator:
-        image = X_batch[0]
-        plt.imshow(image)
-        break
-plt.tight_layout()
-plt.show()
+if TRAIN:
+    plt.figure(figsize=(12, 12))
+    for i in range(0, 15):
+        plt.subplot(5, 3, i+1)
+        for X_batch, Y_batch in example_generator:
+            image = X_batch[0]
+            plt.imshow(image)
+            break
+    plt.tight_layout()
+    plt.show()
 
-epochs=3 if FAST_RUN else 50
-history = model.fit_generator(
-    train_generator, 
-    epochs=epochs,
-    validation_data=validation_generator,
-    validation_steps=total_validate//batch_size,
-    steps_per_epoch=total_train//batch_size,
-    callbacks=callbacks
-)
-model.save_weights("model.h5")
+    epochs=3 if FAST_RUN else 50
+    history = model.fit_generator(
+        train_generator, 
+        epochs=epochs,
+        validation_data=validation_generator,
+        validation_steps=total_validate//batch_size,
+        steps_per_epoch=total_train//batch_size,
+        callbacks=callbacks
+    )
+    model.save_weights("model.h5")
 
+    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(12, 12))
+    ax1.plot(history.history['loss'], color='b', label="Training loss")
+    ax1.plot(history.history['val_loss'], color='r', label="validation loss")
+    ax1.set_xticks(np.arange(1, epochs, 1))
+    ax1.set_yticks(np.arange(0, 1, 0.1))
 
-fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(12, 12))
-ax1.plot(history.history['loss'], color='b', label="Training loss")
-ax1.plot(history.history['val_loss'], color='r', label="validation loss")
-ax1.set_xticks(np.arange(1, epochs, 1))
-ax1.set_yticks(np.arange(0, 1, 0.1))
+    ax2.plot(history.history['acc'], color='b', label="Training accuracy")
+    ax2.plot(history.history['val_acc'], color='r',label="Validation accuracy")
+    ax2.set_xticks(np.arange(1, epochs, 1))
 
-ax2.plot(history.history['acc'], color='b', label="Training accuracy")
-ax2.plot(history.history['val_acc'], color='r',label="Validation accuracy")
-ax2.set_xticks(np.arange(1, epochs, 1))
+    legend = plt.legend(loc='best', shadow=True)
+    plt.tight_layout()
+    plt.show()    
+else:
+    model.load_weights("model.h5")
 
-legend = plt.legend(loc='best', shadow=True)
-plt.tight_layout()
-plt.show()
-
-test_filenames = os.listdir("catdog/input/test1")
+test_filenames = os.listdir("catdog/images/mytest")
 test_df = pd.DataFrame({
     'filename': test_filenames
 })
@@ -180,7 +182,7 @@ nb_samples = test_df.shape[0]
 test_gen = ImageDataGenerator(rescale=1./255)
 test_generator = test_gen.flow_from_dataframe(
     test_df, 
-    "catdog/input/test1/", 
+    "catdog/images/mytest/", 
     x_col='filename',
     y_col=None,
     class_mode=None,
@@ -202,7 +204,7 @@ plt.figure(figsize=(12, 24))
 for index, row in sample_test.iterrows():
     filename = row['filename']
     category = row['category']
-    img = load_img("catdog/input/test1/"+filename, target_size=IMAGE_SIZE)
+    img = load_img("catdog/images/mytest/"+filename, target_size=IMAGE_SIZE)
     plt.subplot(6, 3, index+1)
     plt.imshow(img)
     plt.xlabel(filename + '(' + "{}".format(category) + ')' )
