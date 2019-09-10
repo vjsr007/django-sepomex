@@ -191,6 +191,7 @@ test_generator = test_gen.flow_from_dataframe(
     shuffle=False
 )
 
+
 predict = model.predict_generator(test_generator, steps=np.ceil(nb_samples/batch_size))
 test_df['category'] = np.argmax(predict, axis=-1)
 label_map = dict((v,k) for k,v in train_generator.class_indices.items())
