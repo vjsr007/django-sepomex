@@ -1,5 +1,9 @@
 id,label
+cat,1
+cat,0
 cat01,0
+dog,1
+dog,1
 dog01,1
 gary001,0
 gary002,1
@@ -7,6 +11,6 @@ gary003,0
 gary004,0
 merry001,1
 merry002,0
-negro001,0
+negro001,1
 negro002,1
-negro003,0
+negro003,1

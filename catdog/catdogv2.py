@@ -8,12 +8,12 @@ import random
 import os
 print(os.listdir("catdog/input"))
 
-FAST_RUN = True
+FAST_RUN = False
 IMAGE_WIDTH=128
 IMAGE_HEIGHT=128
 IMAGE_SIZE=(IMAGE_WIDTH, IMAGE_HEIGHT)
 IMAGE_CHANNELS=3
-TRAIN = False
+TRAIN = True
 
 filenames = os.listdir("catdog/input/train")
 categories = []
