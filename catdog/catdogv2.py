@@ -8,7 +8,7 @@ import random
 import os
 print(os.listdir("catdog/input"))
 
-FAST_RUN = False
+FAST_RUN = True
 IMAGE_WIDTH=128
 IMAGE_HEIGHT=128
 IMAGE_SIZE=(IMAGE_WIDTH, IMAGE_HEIGHT)
@@ -146,7 +146,7 @@ if TRAIN:
     plt.tight_layout()
     plt.show()
 
-    epochs=3 if FAST_RUN else 50
+    epochs=6 if FAST_RUN else 50
     history = model.fit_generator(
         train_generator, 
         epochs=epochs,
