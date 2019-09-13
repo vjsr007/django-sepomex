@@ -54,41 +54,7 @@
         ctx.clearRect(0, 0, WIDTH, HEIGHT);
     }
 
-    const dataURItoBlob = (dataURI) => {
-        // convert base64 to raw binary data held in a string
-        // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
-        var byteString = atob(dataURI.split(',')[1]);
-      
-        // separate out the mime component
-        var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
-      
-        // write the bytes of the string to an ArrayBuffer
-        var ab = new ArrayBuffer(byteString.length);
-      
-        // create a view into the buffer
-        var ia = new Uint8Array(ab);
-      
-        // set the bytes of the buffer to the correct values
-        for (var i = 0; i < byteString.length; i++) {
-            ia[i] = byteString.charCodeAt(i);
-        }
-      
-        // write the ArrayBuffer to a blob, and you're done
-        var blob = new Blob([ab], {type: mimeString});
-        return blob;
-      
-    }  
-
     const save = async () => {
-        const dataURL = canvas.toDataURL();
-        console.log(dataURL);
-
-        const blob = dataURItoBlob(dataURL);
-
-        const arrayBuffer = await blob.arrayBuffer();     
-        
-        console.log(arrayBuffer);
-        
         const imageData = ctx.getImageData(0, 0, 28, 28).data;
 
         console.log(imageData);
@@ -146,27 +112,31 @@
                 draw();
             }
         }
-    }    
+    }
 
-    const setupCanvas = () => {
-        canvas = document.getElementById("myCanvas");
-        ctx = canvas.getContext("2d");
-        const index = parseInt(Math.random() * data.length);
+    const getRandomData = (idx) => {
+        const image = [];
+            
+        const index = idx ? idx : parseInt(Math.random() * data.length);
         const pixels = data[index];
 
         console.log(index);
         console.log(data[index])
 
-        const image = [];
         pixels.forEach((item, idx) => {
-            const arrayY = [];
-            const arrayX = [];
             const y = parseInt(idx/28);
             const x = parseInt(idx - (y*28));
             image.push(parseInt(item));
             ctx.fillStyle = `#${zeroFill(parseInt(item).toString(16), 6)}`;
             ctx.fillRect( x, y, 1, 1 );
         });
+
+        return image;
+    }
+
+    const setupCanvas = () => {
+        canvas = document.getElementById("myCanvas");
+        ctx = canvas.getContext("2d");
 
         canvas.addEventListener("mousemove", (e) => {
             findxy('move', e)
@@ -181,7 +151,6 @@
             findxy('out', e)
         }, false);
 
-        return image;
     }
 
     const predictCanvas = (image) => {
@@ -198,12 +167,13 @@
     }
 
     return (async () => {
-        model = await loadModel();
-        data = await loadTestData();
-        const image = setupCanvas();
-        const number = predictCanvas(image);
+        model = await loadModel();     
+        setupCanvas();
 
-        document.getElementsByTagName("h3")[0].innerHTML = number;
+        //data = await loadTestData();
+        //const image = getRandomData();   
+        //const number = predictCanvas(image);
+        //document.getElementsByTagName("h3")[0].innerHTML = number;
     });
 
 })()();
