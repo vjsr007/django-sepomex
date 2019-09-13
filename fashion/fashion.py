@@ -9,27 +9,9 @@ import sys
 import numpy as np
 import matplotlib.pyplot as plt
 from PIL import Image
-from keras.preprocessing import image
-
-# Test Image
-myImages = []
-
-img_array = image.load_img('fashion/images/converse.jpg', grayscale=True , target_size = (28, 28))
-img_array = image.img_to_array(img_array)
-img_array = img_array/255
-
-myImages.append(img_array)
-myImages = np.array(myImages)
-
-print(myImages.shape)
-
-plt.figure(figsize=(6,3))
-plt.subplot(1,2,1)
-plt.grid(True)
-plt.xticks([])
-plt.yticks([])
-plt.imshow(myImages[0].mean(axis=2), cmap=plt.cm.binary)
-plt.show()
+from keras.preprocessing.image import ImageDataGenerator, load_img, image
+import os
+import pandas as pd 
 
 TRAIN=False
 
@@ -189,8 +171,27 @@ if TRAIN:
 else:
     model.load_weights("fashion/model.h5")
 
-# Made prediction with test images
-predictions = model.predict(myImages)
-
-print(predictions)
-print(class_names[np.argmax(predictions)])
+test_filenames = os.listdir("fashion/images")
+test_df = pd.DataFrame({
+    'filename': test_filenames
+})
+nb_samples = test_df.shape[0]
+test_gen = ImageDataGenerator(rescale=1./255)
+test_generator = test_gen.flow_from_dataframe(
+    test_df, 
+    "fashion/images/", 
+    x_col='filename',
+    y_col=None,
+    class_mode=None,
+    target_size=(28,28),
+    color_mode="grayscale",
+    batch_size=15,
+    shuffle=False
+)
+predict = model.predict_generator(test_generator, steps=np.ceil(nb_samples/15))
+for idx, p in enumerate(predict):
+    print("=========================================")
+    print(class_names[np.argmax(p)])
+    print(test_filenames[idx])
+    print(np.argmax(p))
+    print(p)
