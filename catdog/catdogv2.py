@@ -16,7 +16,7 @@ IMAGE_WIDTH=128
 IMAGE_HEIGHT=128
 IMAGE_SIZE=(IMAGE_WIDTH, IMAGE_HEIGHT)
 IMAGE_CHANNELS=3
-TRAIN = True
+TRAIN = False
 
 # Create train dataset with pandas
 filenames = os.listdir("catdog/input/train")
@@ -157,7 +157,7 @@ if TRAIN:
     plt.tight_layout()
     plt.show()
 
-    epochs=3 if FAST_RUN else 50
+    epochs=6 if FAST_RUN else 50
     history = model.fit_generator(
         train_generator, 
         epochs=epochs,
@@ -166,7 +166,7 @@ if TRAIN:
         steps_per_epoch=total_train//batch_size,
         callbacks=callbacks
     )
-    model.save_weights("model.h5")
+    model.save_weights("catdog/model.h5")
 
     fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(12, 12))
     ax1.plot(history.history['loss'], color='b', label="Training loss")
@@ -182,7 +182,7 @@ if TRAIN:
     plt.tight_layout()
     plt.show()    
 else:
-    model.load_weights("model.h5")
+    model.load_weights("catdog/model.h5")
 
 test_filenames = os.listdir("catdog/images/mytest")
 test_df = pd.DataFrame({
@@ -227,4 +227,4 @@ submission_df = test_df.copy()
 submission_df['id'] = submission_df['filename'].str.split('.').str[0]
 submission_df['label'] = submission_df['category']
 submission_df.drop(['filename', 'category'], axis=1, inplace=True)
-submission_df.to_csv('submission.csv', index=False)
+submission_df.to_csv('catdog/submission.csv', index=False)

@@ -140,3 +140,5 @@ if result[0][0] == 1:
 else:
     prediction = 'cat'
 print(prediction)
+
+# https://www.kaggle.com/uysimty/keras-cnn-dog-or-cat-classification

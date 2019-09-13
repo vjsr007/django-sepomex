@@ -1,6 +1,7 @@
 from django.urls import path
 from .views import ListUsuarioView
 from . import views
+from .views import ClassificationListview, ClassificationCreateView, ClassificationUpdateView, ClassificationDeleteView
 
 urlpatterns = [
     path('', ClassificationListview.as_view(), name='list'),
