@@ -114,7 +114,7 @@ model.add(
 )
 
 # Output from previous layer is a 3D tensor. This must be flattened to a 1D 
-# vector before beiung fed to the Dense Layers.
+# vector before begging fed to the Dense Layers.
 model.add(
     tf.keras.layers.Flatten()
 )
