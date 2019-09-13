@@ -50,22 +50,31 @@ def load_image(pathImg) :
     data.append(cv2.resize(full_size_image, (28,28), Image.ANTIALIAS))
     return data
 
+# Test Image
+myImages = []
+
+img_array = image.load_img('tensorflow/images/sneaker01.jpg', grayscale=True , target_size = (28, 28))
+img_array = image.img_to_array(img_array)
+img_array = img_array/255
+
+myImages.append(img_array)
+myImages = np.array(myImages)
+
+print(myImages.shape)
+
+plt.figure(figsize=(6,3))
+plt.subplot(1,2,1)
+plt.grid(True)
+plt.xticks([])
+plt.yticks([])
+plt.imshow(myImages[0].mean(axis=2), cmap=plt.cm.binary)
+plt.show()
+
 # Get Fashion DataSet
 fashion_mnist = keras.datasets.fashion_mnist
 
 # Download DataSet
 (train_images, train_labels), (test_images, test_labels) = fashion_mnist.load_data()
-
-# Test Image
-data = []
-img = image.load_img('tensorflow/images/shirt001.jpg')
-img = image.img_to_array(img)
-img = img/255
-data.append(img)
-train_image = np.array(data)
-train_image = train_image.mean(axis=3)
-
-print(train_image.shape)
 
 # Labels
 class_names = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat',
@@ -77,38 +86,104 @@ train_images = train_images / 255.0
 # Get values between 0 to 1 for Test Images
 test_images = test_images / 255.0
 
-# Create Model
-# Flatten: Input Images 28x28 to linear array(one dimention)
-# ReLU: Rectified Linear Unit activation function, lineal tensor with 128 positive values or 128 neurons
-# Softmax: Ten outputs with SUM equals to 1, MAX value is the predicted label
-model = keras.Sequential([
-    keras.layers.Flatten(input_shape=(28, 28)),
-    keras.layers.Dense(128, activation=tf.nn.relu),
-    keras.layers.Dense(10, activation=tf.nn.softmax)
-])
+# Add an empty color dimension as the Convolutional net is expecting this
+x_train = np.expand_dims(train_images, -1)
+x_test = np.expand_dims(test_images, -1)
 
-# Adam optimizer - changes weight values
-# Categorical CrossEntropy it's used when with classifification problems, each result is only a label
-model.compile(optimizer='adam',
-              loss='sparse_categorical_crossentropy',
-              metrics=['accuracy'])
+print(x_train.shape)
 
-# Trainig model with train images and their labels with five epochs
-model.fit(train_images, train_labels, epochs=5)
+# We begin by defining the a empty stack. We'll use this for building our 
+# network, later by layer.
+model = tf.keras.models.Sequential()
+
+# We start with a convolutional layer this will extract features from 
+# the input images by sliding a convolution filter over the input image, 
+# resulting in a feature map.
+model.add(
+    tf.keras.layers.Conv2D(
+        filters=32, # How many filters we will learn 
+        kernel_size=(3, 3), # Size of feature map that will slide over image
+        strides=(1, 1), # How the feature map "steps" across the image
+        padding='valid', # We are not using padding
+        activation='relu', # Rectified Linear Unit Activation Function
+        input_shape=(28, 28, 1) # The expected input shape for this layer
+    )
+) 
+
+# The next layer we will add is a Maxpooling layer. This will reduce the 
+# dimensionality of each feature, which reduces the number of parameters that 
+# the model needs to learn, which shortens training time.
+model.add(
+    tf.keras.layers.MaxPooling2D(
+        pool_size=(2, 2), # Size feature will be mapped to
+        strides=(2, 2) # How the pool "steps" across the feature
+    )
+)
+          
+# We'll now add a dropout layer. This fights overfitting and forces the model to 
+# learn multiple representations of the same data by randomly disabling neurons 
+# in the learning phase.
+model.add(
+    tf.keras.layers.Dropout(
+        rate=0.25 # Randomly disable 25% of neurons
+    )
+)
+
+# Output from previous layer is a 3D tensor. This must be flattened to a 1D 
+# vector before beiung fed to the Dense Layers.
+model.add(
+    tf.keras.layers.Flatten()
+)
+
+# A dense (interconnected) layer is added for mapping the derived features 
+# to the required class.
+model.add(
+    tf.keras.layers.Dense(
+        units=128, # Output shape
+        activation='relu' # Rectified Linear Unit Activation Function
+    )
+)
+
+# Final layer with 10 outputs and a softmax activation. Softmax activation 
+# enables me to calculate the output based on the probabilities. 
+# Each class is assigned a probability and the class with the maximum 
+# probability is the model’s output for the input.
+model.add(
+    tf.keras.layers.Dense(
+        units=10, # Output shape
+        activation='softmax' # Softmax Activation Function
+    )
+)
+
+# Build the model
+model.compile(
+    loss=tf.keras.losses.sparse_categorical_crossentropy, # loss function
+    optimizer=tf.keras.optimizers.Adam(), # optimizer function
+    metrics=['accuracy'] # reporting metric
+)
+
+# Train the CNN on the training data
+history = model.fit(
+    
+      # Training data : features (images) and classes.
+      x_train, train_labels,
+                    
+      # number of samples to work through before updating the 
+      # internal model parameters via back propagation.
+      batch_size=256, 
+
+      # An epoch is an iteration over the entire training data.
+      epochs=10, 
+
+      # The model will set apart his fraction of the training 
+      # data, will not train on it, and will evaluate the loss
+      # and any model metrics on this data at the end of 
+      # each epoch. 
+      validation_split=0.2, 
+
+      verbose=1)
 
 # Made prediction with test images
-predictions = model.predict(train_image)
+predictions = model.predict(myImages)
 
 print(predictions)
-
-i = 0
-plt.figure(figsize=(6,3))
-plt.subplot(1,2,1)
-plot_image(i, predictions, test_labels, train_image)
-plt.subplot(1,2,2)
-plot_value_array(i, predictions,  test_labels)
-plt.show()
-
-# https://www.analyticsvidhya.com/blog/2019/01/build-image-classification-model-10-minutes/
-# https://becominghuman.ai/building-an-image-classifier-using-deep-learning-in-python-totally-from-a-beginners-perspective-be8dbaf22dd8
-# https://medium.com/datadriveninvestor/deep-learning-techniques-for-text-classification-9392ca9492c7
