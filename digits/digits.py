@@ -7,6 +7,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import os
 from tensorflow import keras
+import tensorflowjs as tfjs
 
 # print(os.listdir("digits/input"))
 
@@ -27,14 +28,6 @@ def show_image(train_image, label, index):
     plt.subplot(3, 6, index+1)
     plt.imshow(image_shaped, cmap=plt.cm.gray)
     plt.title(label)
-
-plt.figure(figsize=(18, 8))
-sample_image = train_data.sample(18).reset_index(drop=True)
-for index, row in sample_image.iterrows():
-    label = row['label']
-    image_pixels = row.drop('label')
-    show_image(image_pixels, label, index)
-plt.tight_layout()
 
 from sklearn.model_selection import train_test_split
 from keras.utils import to_categorical
@@ -105,6 +98,8 @@ if TRAIN:
 else:
     model = keras.models.load_model("digits/model.h5")
 
+tfjs.converters.save_keras_model(model, "digits")
+
 test_digit_data = test_data.values.reshape(test_data.shape[0],28,28,1).astype("float32") / 255
 predictions = model.predict(test_digit_data)
 results = np.argmax(predictions, axis = 1)
@@ -115,6 +110,7 @@ for index, image_pixels in sample_test.iterrows():
     label = results[index]
     show_image(image_pixels, label, index)
 plt.tight_layout()
+plt.show()
 
 submissions = pd.read_csv("digits/sample_submission.csv")
 submissions['Label'] = results
