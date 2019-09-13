@@ -14,7 +14,7 @@ from keras.preprocessing import image
 # Test Image
 myImages = []
 
-img_array = image.load_img('fashion/images/sneaker01.png', grayscale=True , target_size = (28, 28))
+img_array = image.load_img('fashion/images/converse.jpg', grayscale=True , target_size = (28, 28))
 img_array = image.img_to_array(img_array)
 img_array = img_array/255
 
@@ -193,3 +193,4 @@ else:
 predictions = model.predict(myImages)
 
 print(predictions)
+print(class_names[np.argmax(predictions)])
