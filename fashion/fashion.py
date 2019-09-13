@@ -11,6 +11,28 @@ import matplotlib.pyplot as plt
 from PIL import Image
 from keras.preprocessing import image
 
+# Test Image
+myImages = []
+
+img_array = image.load_img('fashion/images/sneaker01.png', grayscale=True , target_size = (28, 28))
+img_array = image.img_to_array(img_array)
+img_array = img_array/255
+
+myImages.append(img_array)
+myImages = np.array(myImages)
+
+print(myImages.shape)
+
+plt.figure(figsize=(6,3))
+plt.subplot(1,2,1)
+plt.grid(True)
+plt.xticks([])
+plt.yticks([])
+plt.imshow(myImages[0].mean(axis=2), cmap=plt.cm.binary)
+plt.show()
+
+TRAIN=False
+
 # Show image in plot with true label vs predicted label
 def plot_image(i, predictions_array, true_label, img):
   predictions_array, true_label, img = predictions_array[i], true_label[i], img[i]
@@ -49,26 +71,6 @@ def load_image(pathImg) :
     full_size_image = cv2.imread(pathImg, 1)
     data.append(cv2.resize(full_size_image, (28,28), Image.ANTIALIAS))
     return data
-
-# Test Image
-myImages = []
-
-img_array = image.load_img('tensorflow/images/sneaker01.jpg', grayscale=True , target_size = (28, 28))
-img_array = image.img_to_array(img_array)
-img_array = img_array/255
-
-myImages.append(img_array)
-myImages = np.array(myImages)
-
-print(myImages.shape)
-
-plt.figure(figsize=(6,3))
-plt.subplot(1,2,1)
-plt.grid(True)
-plt.xticks([])
-plt.yticks([])
-plt.imshow(myImages[0].mean(axis=2), cmap=plt.cm.binary)
-plt.show()
 
 # Get Fashion DataSet
 fashion_mnist = keras.datasets.fashion_mnist
@@ -162,26 +164,30 @@ model.compile(
     metrics=['accuracy'] # reporting metric
 )
 
-# Train the CNN on the training data
-history = model.fit(
-    
-      # Training data : features (images) and classes.
-      x_train, train_labels,
-                    
-      # number of samples to work through before updating the 
-      # internal model parameters via back propagation.
-      batch_size=256, 
+if TRAIN:
+    # Train the CNN on the training data
+    history = model.fit(
+        
+        # Training data : features (images) and classes.
+        x_train, train_labels,
+                        
+        # number of samples to work through before updating the 
+        # internal model parameters via back propagation.
+        batch_size=256, 
 
-      # An epoch is an iteration over the entire training data.
-      epochs=10, 
+        # An epoch is an iteration over the entire training data.
+        epochs=10, 
 
-      # The model will set apart his fraction of the training 
-      # data, will not train on it, and will evaluate the loss
-      # and any model metrics on this data at the end of 
-      # each epoch. 
-      validation_split=0.2, 
+        # The model will set apart his fraction of the training 
+        # data, will not train on it, and will evaluate the loss
+        # and any model metrics on this data at the end of 
+        # each epoch. 
+        validation_split=0.2, 
 
-      verbose=1)
+        verbose=1)
+    model.save_weights("fashion/model.h5")
+else:
+    model.load_weights("fashion/model.h5")
 
 # Made prediction with test images
 predictions = model.predict(myImages)
