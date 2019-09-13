@@ -6,8 +6,11 @@ from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 import random
 import os
+
+# List Directory
 print(os.listdir("catdog/input"))
 
+# Constants
 FAST_RUN = False
 IMAGE_WIDTH=128
 IMAGE_HEIGHT=128
@@ -15,6 +18,7 @@ IMAGE_SIZE=(IMAGE_WIDTH, IMAGE_HEIGHT)
 IMAGE_CHANNELS=3
 TRAIN = True
 
+# Create train dataset with pandas
 filenames = os.listdir("catdog/input/train")
 categories = []
 for filename in filenames:
@@ -29,21 +33,28 @@ df = pd.DataFrame({
     'category': categories
 })
 
-df.head()
+# First 5 rows
+# df.head()
 
-df.tail()
+# Last 5 rows
+# df.tail()
 
+# Shown n categories on plot 
 df['category'].value_counts().plot.bar()
 
+# Get random sample from files and shown on plot
 sample = random.choice(filenames)
 image = load_img("catdog/input/train/"+sample)
 plt.imshow(image)
 
+# Import keras model
 from keras.models import Sequential
 from keras.layers import Conv2D, MaxPooling2D, Dropout, Flatten, Dense, Activation, BatchNormalization
 
+# Create sequential model
 model = Sequential()
 
+# First layer - Extract features with CNN
 model.add(Conv2D(32, (3, 3), activation='relu', input_shape=(IMAGE_WIDTH, IMAGE_HEIGHT, IMAGE_CHANNELS)))
 model.add(BatchNormalization())
 model.add(MaxPooling2D(pool_size=(2, 2)))
