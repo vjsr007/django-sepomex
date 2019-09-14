@@ -57,7 +57,7 @@
     const save = async () => {
         const imageData = ctx.getImageData(0, 0, 28, 28).data;
 
-        console.log(imageData);
+        // console.log(imageData);
 
         const image = [];
         for(let i=0; i<imageData.length; i++) {
@@ -120,8 +120,8 @@
         const index = idx ? idx : parseInt(Math.random() * data.length);
         const pixels = data[index];
 
-        console.log(index);
-        console.log(data[index])
+        // console.log(index);
+        // console.log(data[index])
 
         pixels.forEach((item, idx) => {
             const y = parseInt(idx/28);
@@ -161,7 +161,8 @@
         const prediction = model.predict(example);
         const result = prediction.dataSync();
         console.log(result);
-        console.log(CLASS_NUMBERS[result.indexOf(1)]);
+        console.log(tf.memory());
+        //console.log(CLASS_NUMBERS[result.indexOf(1)]);
 
         return CLASS_NUMBERS[result.indexOf(1)]
     }
