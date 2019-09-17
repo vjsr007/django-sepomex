@@ -2,6 +2,7 @@ import sys
 import sqlite3
 dbconnect = sqlite3.connect("db.sqlite3");
 cursor = dbconnect.cursor();
+from tensorflow import keras
 
 username = sys.argv[1];
 
