@@ -15,10 +15,10 @@ import time
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--input_dir", default="facades/train", help="path to folder containing images")
-parser.add_argument("--mode", default="train", choices=["train", "test", "export"])
+parser.add_argument("--mode", default="test", choices=["train", "test", "export"])
 parser.add_argument("--output_dir", default="facades_test", help="where to put output files")
 parser.add_argument("--seed", type=int)
-parser.add_argument("--checkpoint", default=None, help="directory with checkpoint to resume training from or use for testing")
+parser.add_argument("--checkpoint", default="facades_test", help="directory with checkpoint to resume training from or use for testing")
 
 parser.add_argument("--max_steps", type=int, help="number of training steps (0 to disable)")
 parser.add_argument("--max_epochs", default=1, type=int, help="number of training epochs")

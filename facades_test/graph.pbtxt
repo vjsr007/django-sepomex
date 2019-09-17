@@ -619,41 +619,6 @@ node {
   }
 }
 node {
-  name: "load_images/input_producer/RandomShuffle"
-  op: "RandomShuffle"
-  input: "load_images/input_producer/Identity"
-  attr {
-    key: "T"
-    value {
-      type: DT_STRING
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 400
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "seed"
-    value {
-      i: 1826704191
-    }
-  }
-  attr {
-    key: "seed2"
-    value {
-      i: 8
-    }
-  }
-}
-node {
   name: "load_images/input_producer"
   op: "FIFOQueueV2"
   attr {
@@ -705,7 +670,7 @@ node {
   name: "load_images/input_producer/input_producer_EnqueueMany"
   op: "QueueEnqueueManyV2"
   input: "load_images/input_producer"
-  input: "load_images/input_producer/RandomShuffle"
+  input: "load_images/input_producer/Identity"
   attr {
     key: "Tcomponents"
     value {
@@ -2713,1157 +2678,6 @@ node {
   }
 }
 node {
-  name: "input_images/random_flip_left_right/Shape"
-  op: "Shape"
-  input: "load_images/preprocess_1/sub"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 3
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "out_type"
-    value {
-      type: DT_INT32
-    }
-  }
-}
-node {
-  name: "input_images/random_flip_left_right/assert_positive/Const"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-        }
-        int_val: 0
-      }
-    }
-  }
-}
-node {
-  name: "input_images/random_flip_left_right/assert_positive/assert_less/Less"
-  op: "Less"
-  input: "input_images/random_flip_left_right/assert_positive/Const"
-  input: "input_images/random_flip_left_right/Shape"
-  attr {
-    key: "T"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 3
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "input_images/random_flip_left_right/assert_positive/assert_less/Const"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 1
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-          dim {
-            size: 1
-          }
-        }
-        int_val: 0
-      }
-    }
-  }
-}
-node {
-  name: "input_images/random_flip_left_right/assert_positive/assert_less/All"
-  op: "All"
-  input: "input_images/random_flip_left_right/assert_positive/assert_less/Less"
-  input: "input_images/random_flip_left_right/assert_positive/assert_less/Const"
-  attr {
-    key: "Tidx"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "keep_dims"
-    value {
-      b: false
-    }
-  }
-}
-node {
-  name: "input_images/random_flip_left_right/assert_positive/assert_less/Assert/Const"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_STRING
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_STRING
-        tensor_shape {
-        }
-        string_val: "all dims of \'image.shape\' must be > 0."
-      }
-    }
-  }
-}
-node {
-  name: "input_images/random_flip_left_right/assert_positive/assert_less/Assert/Assert/data_0"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_STRING
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_STRING
-        tensor_shape {
-        }
-        string_val: "all dims of \'image.shape\' must be > 0."
-      }
-    }
-  }
-}
-node {
-  name: "input_images/random_flip_left_right/assert_positive/assert_less/Assert/Assert"
-  op: "Assert"
-  input: "input_images/random_flip_left_right/assert_positive/assert_less/All"
-  input: "input_images/random_flip_left_right/assert_positive/assert_less/Assert/Assert/data_0"
-  attr {
-    key: "T"
-    value {
-      list {
-        type: DT_STRING
-      }
-    }
-  }
-  attr {
-    key: "summarize"
-    value {
-      i: 3
-    }
-  }
-}
-node {
-  name: "input_images/random_flip_left_right/Rank"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-        }
-        int_val: 3
-      }
-    }
-  }
-}
-node {
-  name: "input_images/random_flip_left_right/assert_greater_equal/y"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-        }
-        int_val: 3
-      }
-    }
-  }
-}
-node {
-  name: "input_images/random_flip_left_right/assert_greater_equal/GreaterEqual"
-  op: "GreaterEqual"
-  input: "input_images/random_flip_left_right/Rank"
-  input: "input_images/random_flip_left_right/assert_greater_equal/y"
-  attr {
-    key: "T"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-}
-node {
-  name: "input_images/random_flip_left_right/assert_greater_equal/Const"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-          dim {
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "input_images/random_flip_left_right/assert_greater_equal/All"
-  op: "All"
-  input: "input_images/random_flip_left_right/assert_greater_equal/GreaterEqual"
-  input: "input_images/random_flip_left_right/assert_greater_equal/Const"
-  attr {
-    key: "Tidx"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "keep_dims"
-    value {
-      b: false
-    }
-  }
-}
-node {
-  name: "input_images/random_flip_left_right/assert_greater_equal/Assert/Const"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_STRING
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_STRING
-        tensor_shape {
-        }
-        string_val: "\'image\' must be at least three-dimensional."
-      }
-    }
-  }
-}
-node {
-  name: "input_images/random_flip_left_right/assert_greater_equal/Assert/Const_1"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_STRING
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_STRING
-        tensor_shape {
-        }
-        string_val: "Condition x >= y did not hold element-wise:x (input_images/random_flip_left_right/Rank:0) = "
-      }
-    }
-  }
-}
-node {
-  name: "input_images/random_flip_left_right/assert_greater_equal/Assert/Const_2"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_STRING
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_STRING
-        tensor_shape {
-        }
-        string_val: "y (input_images/random_flip_left_right/assert_greater_equal/y:0) = "
-      }
-    }
-  }
-}
-node {
-  name: "input_images/random_flip_left_right/assert_greater_equal/Assert/Assert/data_0"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_STRING
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_STRING
-        tensor_shape {
-        }
-        string_val: "\'image\' must be at least three-dimensional."
-      }
-    }
-  }
-}
-node {
-  name: "input_images/random_flip_left_right/assert_greater_equal/Assert/Assert/data_1"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_STRING
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_STRING
-        tensor_shape {
-        }
-        string_val: "Condition x >= y did not hold element-wise:x (input_images/random_flip_left_right/Rank:0) = "
-      }
-    }
-  }
-}
-node {
-  name: "input_images/random_flip_left_right/assert_greater_equal/Assert/Assert/data_3"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_STRING
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_STRING
-        tensor_shape {
-        }
-        string_val: "y (input_images/random_flip_left_right/assert_greater_equal/y:0) = "
-      }
-    }
-  }
-}
-node {
-  name: "input_images/random_flip_left_right/assert_greater_equal/Assert/Assert"
-  op: "Assert"
-  input: "input_images/random_flip_left_right/assert_greater_equal/All"
-  input: "input_images/random_flip_left_right/assert_greater_equal/Assert/Assert/data_0"
-  input: "input_images/random_flip_left_right/assert_greater_equal/Assert/Assert/data_1"
-  input: "input_images/random_flip_left_right/Rank"
-  input: "input_images/random_flip_left_right/assert_greater_equal/Assert/Assert/data_3"
-  input: "input_images/random_flip_left_right/assert_greater_equal/y"
-  attr {
-    key: "T"
-    value {
-      list {
-        type: DT_STRING
-        type: DT_STRING
-        type: DT_INT32
-        type: DT_STRING
-        type: DT_INT32
-      }
-    }
-  }
-  attr {
-    key: "summarize"
-    value {
-      i: 3
-    }
-  }
-}
-node {
-  name: "input_images/random_flip_left_right/control_dependency"
-  op: "Identity"
-  input: "load_images/preprocess_1/sub"
-  input: "^input_images/random_flip_left_right/assert_greater_equal/Assert/Assert"
-  input: "^input_images/random_flip_left_right/assert_positive/assert_less/Assert/Assert"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@load_images/preprocess_1/sub"
-      }
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: -1
-          }
-          dim {
-            size: 3
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "input_images/random_flip_left_right/random_uniform/shape"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-          dim {
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "input_images/random_flip_left_right/random_uniform/min"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_FLOAT
-        tensor_shape {
-        }
-        float_val: 0.0
-      }
-    }
-  }
-}
-node {
-  name: "input_images/random_flip_left_right/random_uniform/max"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_FLOAT
-        tensor_shape {
-        }
-        float_val: 1.0
-      }
-    }
-  }
-}
-node {
-  name: "input_images/random_flip_left_right/random_uniform/RandomUniform"
-  op: "RandomUniform"
-  input: "input_images/random_flip_left_right/random_uniform/shape"
-  attr {
-    key: "T"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "seed"
-    value {
-      i: 1826704191
-    }
-  }
-  attr {
-    key: "seed2"
-    value {
-      i: 127381207
-    }
-  }
-}
-node {
-  name: "input_images/random_flip_left_right/random_uniform/sub"
-  op: "Sub"
-  input: "input_images/random_flip_left_right/random_uniform/max"
-  input: "input_images/random_flip_left_right/random_uniform/min"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-}
-node {
-  name: "input_images/random_flip_left_right/random_uniform/mul"
-  op: "Mul"
-  input: "input_images/random_flip_left_right/random_uniform/RandomUniform"
-  input: "input_images/random_flip_left_right/random_uniform/sub"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-}
-node {
-  name: "input_images/random_flip_left_right/random_uniform"
-  op: "Add"
-  input: "input_images/random_flip_left_right/random_uniform/mul"
-  input: "input_images/random_flip_left_right/random_uniform/min"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-}
-node {
-  name: "input_images/random_flip_left_right/Less/y"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_FLOAT
-        tensor_shape {
-        }
-        float_val: 0.5
-      }
-    }
-  }
-}
-node {
-  name: "input_images/random_flip_left_right/Less"
-  op: "Less"
-  input: "input_images/random_flip_left_right/random_uniform"
-  input: "input_images/random_flip_left_right/Less/y"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-}
-node {
-  name: "input_images/random_flip_left_right/Switch"
-  op: "Switch"
-  input: "input_images/random_flip_left_right/Less"
-  input: "input_images/random_flip_left_right/Less"
-  attr {
-    key: "T"
-    value {
-      type: DT_BOOL
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-        shape {
-        }
-      }
-    }
-  }
-}
-node {
-  name: "input_images/random_flip_left_right/switch_t"
-  op: "Identity"
-  input: "input_images/random_flip_left_right/Switch:1"
-  attr {
-    key: "T"
-    value {
-      type: DT_BOOL
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-}
-node {
-  name: "input_images/random_flip_left_right/switch_f"
-  op: "Identity"
-  input: "input_images/random_flip_left_right/Switch"
-  attr {
-    key: "T"
-    value {
-      type: DT_BOOL
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-}
-node {
-  name: "input_images/random_flip_left_right/pred_id"
-  op: "Identity"
-  input: "input_images/random_flip_left_right/Less"
-  attr {
-    key: "T"
-    value {
-      type: DT_BOOL
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-}
-node {
-  name: "input_images/random_flip_left_right/ReverseV2/axis"
-  op: "Const"
-  input: "^input_images/random_flip_left_right/switch_t"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 1
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-          dim {
-            size: 1
-          }
-        }
-        int_val: 1
-      }
-    }
-  }
-}
-node {
-  name: "input_images/random_flip_left_right/ReverseV2"
-  op: "ReverseV2"
-  input: "input_images/random_flip_left_right/ReverseV2/Switch:1"
-  input: "input_images/random_flip_left_right/ReverseV2/axis"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "Tidx"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: -1
-          }
-          dim {
-            size: 3
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "input_images/random_flip_left_right/ReverseV2/Switch"
-  op: "Switch"
-  input: "input_images/random_flip_left_right/control_dependency"
-  input: "input_images/random_flip_left_right/pred_id"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@load_images/preprocess_1/sub"
-      }
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: -1
-          }
-          dim {
-            size: 3
-          }
-        }
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: -1
-          }
-          dim {
-            size: 3
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "input_images/random_flip_left_right/Switch_1"
-  op: "Switch"
-  input: "input_images/random_flip_left_right/control_dependency"
-  input: "input_images/random_flip_left_right/pred_id"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@load_images/preprocess_1/sub"
-      }
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: -1
-          }
-          dim {
-            size: 3
-          }
-        }
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: -1
-          }
-          dim {
-            size: 3
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "input_images/random_flip_left_right/Merge"
-  op: "Merge"
-  input: "input_images/random_flip_left_right/Switch_1"
-  input: "input_images/random_flip_left_right/ReverseV2"
-  attr {
-    key: "N"
-    value {
-      i: 2
-    }
-  }
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: -1
-          }
-          dim {
-            size: 3
-          }
-        }
-        shape {
-        }
-      }
-    }
-  }
-}
-node {
   name: "input_images/resize/ExpandDims/dim"
   op: "Const"
   attr {
@@ -3896,7 +2710,7 @@ node {
 node {
   name: "input_images/resize/ExpandDims"
   op: "ExpandDims"
-  input: "input_images/random_flip_left_right/Merge"
+  input: "load_images/preprocess_1/sub"
   input: "input_images/resize/ExpandDims/dim"
   attr {
     key: "T"
@@ -3963,7 +2777,7 @@ node {
             size: 2
           }
         }
-        tensor_content: "\036\001\000\000\036\001\000\000"
+        tensor_content: "\000\001\000\000\000\001\000\000"
       }
     }
   }
@@ -3988,10 +2802,10 @@ node {
             size: 1
           }
           dim {
-            size: 286
+            size: 256
           }
           dim {
-            size: 286
+            size: 256
           }
           dim {
             size: 3
@@ -4023,10 +2837,10 @@ node {
       list {
         shape {
           dim {
-            size: 286
+            size: 256
           }
           dim {
-            size: 286
+            size: 256
           }
           dim {
             size: 3
@@ -4135,7 +2949,7 @@ node {
         dtype: DT_FLOAT
         tensor_shape {
         }
-        float_val: 31.0
+        float_val: 1.0
       }
     }
   }
@@ -4171,13 +2985,13 @@ node {
   attr {
     key: "seed"
     value {
-      i: 1826704191
+      i: 523669081
     }
   }
   attr {
     key: "seed2"
     value {
-      i: 127381207
+      i: 1222282283
     }
   }
 }
@@ -4309,2441 +3123,6 @@ node {
   }
 }
 node {
-  name: "input_images/strided_slice/stack"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 1
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-          dim {
-            size: 1
-          }
-        }
-        int_val: 0
-      }
-    }
-  }
-}
-node {
-  name: "input_images/strided_slice/stack_1"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 1
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-          dim {
-            size: 1
-          }
-        }
-        int_val: 1
-      }
-    }
-  }
-}
-node {
-  name: "input_images/strided_slice/stack_2"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 1
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-          dim {
-            size: 1
-          }
-        }
-        int_val: 1
-      }
-    }
-  }
-}
-node {
-  name: "input_images/strided_slice"
-  op: "StridedSlice"
-  input: "input_images/Cast"
-  input: "input_images/strided_slice/stack"
-  input: "input_images/strided_slice/stack_1"
-  input: "input_images/strided_slice/stack_2"
-  attr {
-    key: "Index"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "T"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "begin_mask"
-    value {
-      i: 0
-    }
-  }
-  attr {
-    key: "ellipsis_mask"
-    value {
-      i: 0
-    }
-  }
-  attr {
-    key: "end_mask"
-    value {
-      i: 0
-    }
-  }
-  attr {
-    key: "new_axis_mask"
-    value {
-      i: 0
-    }
-  }
-  attr {
-    key: "shrink_axis_mask"
-    value {
-      i: 1
-    }
-  }
-}
-node {
-  name: "input_images/strided_slice_1/stack"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 1
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-          dim {
-            size: 1
-          }
-        }
-        int_val: 1
-      }
-    }
-  }
-}
-node {
-  name: "input_images/strided_slice_1/stack_1"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 1
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-          dim {
-            size: 1
-          }
-        }
-        int_val: 2
-      }
-    }
-  }
-}
-node {
-  name: "input_images/strided_slice_1/stack_2"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 1
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-          dim {
-            size: 1
-          }
-        }
-        int_val: 1
-      }
-    }
-  }
-}
-node {
-  name: "input_images/strided_slice_1"
-  op: "StridedSlice"
-  input: "input_images/Cast"
-  input: "input_images/strided_slice_1/stack"
-  input: "input_images/strided_slice_1/stack_1"
-  input: "input_images/strided_slice_1/stack_2"
-  attr {
-    key: "Index"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "T"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "begin_mask"
-    value {
-      i: 0
-    }
-  }
-  attr {
-    key: "ellipsis_mask"
-    value {
-      i: 0
-    }
-  }
-  attr {
-    key: "end_mask"
-    value {
-      i: 0
-    }
-  }
-  attr {
-    key: "new_axis_mask"
-    value {
-      i: 0
-    }
-  }
-  attr {
-    key: "shrink_axis_mask"
-    value {
-      i: 1
-    }
-  }
-}
-node {
-  name: "input_images/crop_to_bounding_box/ExpandDims/dim"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-        }
-        int_val: 0
-      }
-    }
-  }
-}
-node {
-  name: "input_images/crop_to_bounding_box/ExpandDims"
-  op: "ExpandDims"
-  input: "input_images/resize/Squeeze"
-  input: "input_images/crop_to_bounding_box/ExpandDims/dim"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "Tdim"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 1
-          }
-          dim {
-            size: 286
-          }
-          dim {
-            size: 286
-          }
-          dim {
-            size: 3
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "input_images/crop_to_bounding_box/GreaterEqual/y"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-        }
-        int_val: 0
-      }
-    }
-  }
-}
-node {
-  name: "input_images/crop_to_bounding_box/GreaterEqual"
-  op: "GreaterEqual"
-  input: "input_images/strided_slice_1"
-  input: "input_images/crop_to_bounding_box/GreaterEqual/y"
-  attr {
-    key: "T"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-}
-node {
-  name: "input_images/crop_to_bounding_box/Assert/Const"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_STRING
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_STRING
-        tensor_shape {
-        }
-        string_val: "offset_width must be >= 0."
-      }
-    }
-  }
-}
-node {
-  name: "input_images/crop_to_bounding_box/Assert/Assert/data_0"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_STRING
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_STRING
-        tensor_shape {
-        }
-        string_val: "offset_width must be >= 0."
-      }
-    }
-  }
-}
-node {
-  name: "input_images/crop_to_bounding_box/Assert/Assert"
-  op: "Assert"
-  input: "input_images/crop_to_bounding_box/GreaterEqual"
-  input: "input_images/crop_to_bounding_box/Assert/Assert/data_0"
-  attr {
-    key: "T"
-    value {
-      list {
-        type: DT_STRING
-      }
-    }
-  }
-  attr {
-    key: "summarize"
-    value {
-      i: 3
-    }
-  }
-}
-node {
-  name: "input_images/crop_to_bounding_box/GreaterEqual_1/y"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-        }
-        int_val: 0
-      }
-    }
-  }
-}
-node {
-  name: "input_images/crop_to_bounding_box/GreaterEqual_1"
-  op: "GreaterEqual"
-  input: "input_images/strided_slice"
-  input: "input_images/crop_to_bounding_box/GreaterEqual_1/y"
-  attr {
-    key: "T"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-}
-node {
-  name: "input_images/crop_to_bounding_box/Assert_1/Const"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_STRING
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_STRING
-        tensor_shape {
-        }
-        string_val: "offset_height must be >= 0."
-      }
-    }
-  }
-}
-node {
-  name: "input_images/crop_to_bounding_box/Assert_1/Assert/data_0"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_STRING
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_STRING
-        tensor_shape {
-        }
-        string_val: "offset_height must be >= 0."
-      }
-    }
-  }
-}
-node {
-  name: "input_images/crop_to_bounding_box/Assert_1/Assert"
-  op: "Assert"
-  input: "input_images/crop_to_bounding_box/GreaterEqual_1"
-  input: "input_images/crop_to_bounding_box/Assert_1/Assert/data_0"
-  attr {
-    key: "T"
-    value {
-      list {
-        type: DT_STRING
-      }
-    }
-  }
-  attr {
-    key: "summarize"
-    value {
-      i: 3
-    }
-  }
-}
-node {
-  name: "input_images/crop_to_bounding_box/add/x"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-        }
-        int_val: 256
-      }
-    }
-  }
-}
-node {
-  name: "input_images/crop_to_bounding_box/add"
-  op: "Add"
-  input: "input_images/crop_to_bounding_box/add/x"
-  input: "input_images/strided_slice_1"
-  attr {
-    key: "T"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-}
-node {
-  name: "input_images/crop_to_bounding_box/LessEqual/y"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-        }
-        int_val: 286
-      }
-    }
-  }
-}
-node {
-  name: "input_images/crop_to_bounding_box/LessEqual"
-  op: "LessEqual"
-  input: "input_images/crop_to_bounding_box/add"
-  input: "input_images/crop_to_bounding_box/LessEqual/y"
-  attr {
-    key: "T"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-}
-node {
-  name: "input_images/crop_to_bounding_box/Assert_2/Const"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_STRING
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_STRING
-        tensor_shape {
-        }
-        string_val: "width must be >= target + offset."
-      }
-    }
-  }
-}
-node {
-  name: "input_images/crop_to_bounding_box/Assert_2/Assert/data_0"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_STRING
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_STRING
-        tensor_shape {
-        }
-        string_val: "width must be >= target + offset."
-      }
-    }
-  }
-}
-node {
-  name: "input_images/crop_to_bounding_box/Assert_2/Assert"
-  op: "Assert"
-  input: "input_images/crop_to_bounding_box/LessEqual"
-  input: "input_images/crop_to_bounding_box/Assert_2/Assert/data_0"
-  attr {
-    key: "T"
-    value {
-      list {
-        type: DT_STRING
-      }
-    }
-  }
-  attr {
-    key: "summarize"
-    value {
-      i: 3
-    }
-  }
-}
-node {
-  name: "input_images/crop_to_bounding_box/add_1/x"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-        }
-        int_val: 256
-      }
-    }
-  }
-}
-node {
-  name: "input_images/crop_to_bounding_box/add_1"
-  op: "Add"
-  input: "input_images/crop_to_bounding_box/add_1/x"
-  input: "input_images/strided_slice"
-  attr {
-    key: "T"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-}
-node {
-  name: "input_images/crop_to_bounding_box/LessEqual_1/y"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-        }
-        int_val: 286
-      }
-    }
-  }
-}
-node {
-  name: "input_images/crop_to_bounding_box/LessEqual_1"
-  op: "LessEqual"
-  input: "input_images/crop_to_bounding_box/add_1"
-  input: "input_images/crop_to_bounding_box/LessEqual_1/y"
-  attr {
-    key: "T"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-}
-node {
-  name: "input_images/crop_to_bounding_box/Assert_3/Const"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_STRING
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_STRING
-        tensor_shape {
-        }
-        string_val: "height must be >= target + offset."
-      }
-    }
-  }
-}
-node {
-  name: "input_images/crop_to_bounding_box/Assert_3/Assert/data_0"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_STRING
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_STRING
-        tensor_shape {
-        }
-        string_val: "height must be >= target + offset."
-      }
-    }
-  }
-}
-node {
-  name: "input_images/crop_to_bounding_box/Assert_3/Assert"
-  op: "Assert"
-  input: "input_images/crop_to_bounding_box/LessEqual_1"
-  input: "input_images/crop_to_bounding_box/Assert_3/Assert/data_0"
-  attr {
-    key: "T"
-    value {
-      list {
-        type: DT_STRING
-      }
-    }
-  }
-  attr {
-    key: "summarize"
-    value {
-      i: 3
-    }
-  }
-}
-node {
-  name: "input_images/crop_to_bounding_box/control_dependency"
-  op: "Identity"
-  input: "input_images/crop_to_bounding_box/ExpandDims"
-  input: "^input_images/crop_to_bounding_box/Assert/Assert"
-  input: "^input_images/crop_to_bounding_box/Assert_1/Assert"
-  input: "^input_images/crop_to_bounding_box/Assert_2/Assert"
-  input: "^input_images/crop_to_bounding_box/Assert_3/Assert"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@input_images/crop_to_bounding_box/ExpandDims"
-      }
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 1
-          }
-          dim {
-            size: 286
-          }
-          dim {
-            size: 286
-          }
-          dim {
-            size: 3
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "input_images/crop_to_bounding_box/stack/0"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-        }
-        int_val: 0
-      }
-    }
-  }
-}
-node {
-  name: "input_images/crop_to_bounding_box/stack/3"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-        }
-        int_val: 0
-      }
-    }
-  }
-}
-node {
-  name: "input_images/crop_to_bounding_box/stack"
-  op: "Pack"
-  input: "input_images/crop_to_bounding_box/stack/0"
-  input: "input_images/strided_slice"
-  input: "input_images/strided_slice_1"
-  input: "input_images/crop_to_bounding_box/stack/3"
-  attr {
-    key: "N"
-    value {
-      i: 4
-    }
-  }
-  attr {
-    key: "T"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 4
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "axis"
-    value {
-      i: 0
-    }
-  }
-}
-node {
-  name: "input_images/crop_to_bounding_box/stack_1"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 4
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-          dim {
-            size: 4
-          }
-        }
-        tensor_content: "\377\377\377\377\000\001\000\000\000\001\000\000\377\377\377\377"
-      }
-    }
-  }
-}
-node {
-  name: "input_images/crop_to_bounding_box/Slice"
-  op: "Slice"
-  input: "input_images/crop_to_bounding_box/control_dependency"
-  input: "input_images/crop_to_bounding_box/stack"
-  input: "input_images/crop_to_bounding_box/stack_1"
-  attr {
-    key: "Index"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 1
-          }
-          dim {
-            size: 256
-          }
-          dim {
-            size: 256
-          }
-          dim {
-            size: 3
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "input_images/crop_to_bounding_box/Squeeze"
-  op: "Squeeze"
-  input: "input_images/crop_to_bounding_box/Slice"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 256
-          }
-          dim {
-            size: 256
-          }
-          dim {
-            size: 3
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "squeeze_dims"
-    value {
-      list {
-        i: 0
-      }
-    }
-  }
-}
-node {
-  name: "target_images/random_flip_left_right/Shape"
-  op: "Shape"
-  input: "load_images/preprocess/sub"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 3
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "out_type"
-    value {
-      type: DT_INT32
-    }
-  }
-}
-node {
-  name: "target_images/random_flip_left_right/assert_positive/Const"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-        }
-        int_val: 0
-      }
-    }
-  }
-}
-node {
-  name: "target_images/random_flip_left_right/assert_positive/assert_less/Less"
-  op: "Less"
-  input: "target_images/random_flip_left_right/assert_positive/Const"
-  input: "target_images/random_flip_left_right/Shape"
-  attr {
-    key: "T"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 3
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "target_images/random_flip_left_right/assert_positive/assert_less/Const"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 1
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-          dim {
-            size: 1
-          }
-        }
-        int_val: 0
-      }
-    }
-  }
-}
-node {
-  name: "target_images/random_flip_left_right/assert_positive/assert_less/All"
-  op: "All"
-  input: "target_images/random_flip_left_right/assert_positive/assert_less/Less"
-  input: "target_images/random_flip_left_right/assert_positive/assert_less/Const"
-  attr {
-    key: "Tidx"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "keep_dims"
-    value {
-      b: false
-    }
-  }
-}
-node {
-  name: "target_images/random_flip_left_right/assert_positive/assert_less/Assert/Const"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_STRING
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_STRING
-        tensor_shape {
-        }
-        string_val: "all dims of \'image.shape\' must be > 0."
-      }
-    }
-  }
-}
-node {
-  name: "target_images/random_flip_left_right/assert_positive/assert_less/Assert/Assert/data_0"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_STRING
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_STRING
-        tensor_shape {
-        }
-        string_val: "all dims of \'image.shape\' must be > 0."
-      }
-    }
-  }
-}
-node {
-  name: "target_images/random_flip_left_right/assert_positive/assert_less/Assert/Assert"
-  op: "Assert"
-  input: "target_images/random_flip_left_right/assert_positive/assert_less/All"
-  input: "target_images/random_flip_left_right/assert_positive/assert_less/Assert/Assert/data_0"
-  attr {
-    key: "T"
-    value {
-      list {
-        type: DT_STRING
-      }
-    }
-  }
-  attr {
-    key: "summarize"
-    value {
-      i: 3
-    }
-  }
-}
-node {
-  name: "target_images/random_flip_left_right/Rank"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-        }
-        int_val: 3
-      }
-    }
-  }
-}
-node {
-  name: "target_images/random_flip_left_right/assert_greater_equal/y"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-        }
-        int_val: 3
-      }
-    }
-  }
-}
-node {
-  name: "target_images/random_flip_left_right/assert_greater_equal/GreaterEqual"
-  op: "GreaterEqual"
-  input: "target_images/random_flip_left_right/Rank"
-  input: "target_images/random_flip_left_right/assert_greater_equal/y"
-  attr {
-    key: "T"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-}
-node {
-  name: "target_images/random_flip_left_right/assert_greater_equal/Const"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-          dim {
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "target_images/random_flip_left_right/assert_greater_equal/All"
-  op: "All"
-  input: "target_images/random_flip_left_right/assert_greater_equal/GreaterEqual"
-  input: "target_images/random_flip_left_right/assert_greater_equal/Const"
-  attr {
-    key: "Tidx"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "keep_dims"
-    value {
-      b: false
-    }
-  }
-}
-node {
-  name: "target_images/random_flip_left_right/assert_greater_equal/Assert/Const"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_STRING
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_STRING
-        tensor_shape {
-        }
-        string_val: "\'image\' must be at least three-dimensional."
-      }
-    }
-  }
-}
-node {
-  name: "target_images/random_flip_left_right/assert_greater_equal/Assert/Const_1"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_STRING
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_STRING
-        tensor_shape {
-        }
-        string_val: "Condition x >= y did not hold element-wise:x (target_images/random_flip_left_right/Rank:0) = "
-      }
-    }
-  }
-}
-node {
-  name: "target_images/random_flip_left_right/assert_greater_equal/Assert/Const_2"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_STRING
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_STRING
-        tensor_shape {
-        }
-        string_val: "y (target_images/random_flip_left_right/assert_greater_equal/y:0) = "
-      }
-    }
-  }
-}
-node {
-  name: "target_images/random_flip_left_right/assert_greater_equal/Assert/Assert/data_0"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_STRING
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_STRING
-        tensor_shape {
-        }
-        string_val: "\'image\' must be at least three-dimensional."
-      }
-    }
-  }
-}
-node {
-  name: "target_images/random_flip_left_right/assert_greater_equal/Assert/Assert/data_1"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_STRING
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_STRING
-        tensor_shape {
-        }
-        string_val: "Condition x >= y did not hold element-wise:x (target_images/random_flip_left_right/Rank:0) = "
-      }
-    }
-  }
-}
-node {
-  name: "target_images/random_flip_left_right/assert_greater_equal/Assert/Assert/data_3"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_STRING
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_STRING
-        tensor_shape {
-        }
-        string_val: "y (target_images/random_flip_left_right/assert_greater_equal/y:0) = "
-      }
-    }
-  }
-}
-node {
-  name: "target_images/random_flip_left_right/assert_greater_equal/Assert/Assert"
-  op: "Assert"
-  input: "target_images/random_flip_left_right/assert_greater_equal/All"
-  input: "target_images/random_flip_left_right/assert_greater_equal/Assert/Assert/data_0"
-  input: "target_images/random_flip_left_right/assert_greater_equal/Assert/Assert/data_1"
-  input: "target_images/random_flip_left_right/Rank"
-  input: "target_images/random_flip_left_right/assert_greater_equal/Assert/Assert/data_3"
-  input: "target_images/random_flip_left_right/assert_greater_equal/y"
-  attr {
-    key: "T"
-    value {
-      list {
-        type: DT_STRING
-        type: DT_STRING
-        type: DT_INT32
-        type: DT_STRING
-        type: DT_INT32
-      }
-    }
-  }
-  attr {
-    key: "summarize"
-    value {
-      i: 3
-    }
-  }
-}
-node {
-  name: "target_images/random_flip_left_right/control_dependency"
-  op: "Identity"
-  input: "load_images/preprocess/sub"
-  input: "^target_images/random_flip_left_right/assert_greater_equal/Assert/Assert"
-  input: "^target_images/random_flip_left_right/assert_positive/assert_less/Assert/Assert"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@load_images/preprocess/sub"
-      }
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: -1
-          }
-          dim {
-            size: 3
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "target_images/random_flip_left_right/random_uniform/shape"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-          dim {
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "target_images/random_flip_left_right/random_uniform/min"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_FLOAT
-        tensor_shape {
-        }
-        float_val: 0.0
-      }
-    }
-  }
-}
-node {
-  name: "target_images/random_flip_left_right/random_uniform/max"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_FLOAT
-        tensor_shape {
-        }
-        float_val: 1.0
-      }
-    }
-  }
-}
-node {
-  name: "target_images/random_flip_left_right/random_uniform/RandomUniform"
-  op: "RandomUniform"
-  input: "target_images/random_flip_left_right/random_uniform/shape"
-  attr {
-    key: "T"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "seed"
-    value {
-      i: 1826704191
-    }
-  }
-  attr {
-    key: "seed2"
-    value {
-      i: 127381207
-    }
-  }
-}
-node {
-  name: "target_images/random_flip_left_right/random_uniform/sub"
-  op: "Sub"
-  input: "target_images/random_flip_left_right/random_uniform/max"
-  input: "target_images/random_flip_left_right/random_uniform/min"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-}
-node {
-  name: "target_images/random_flip_left_right/random_uniform/mul"
-  op: "Mul"
-  input: "target_images/random_flip_left_right/random_uniform/RandomUniform"
-  input: "target_images/random_flip_left_right/random_uniform/sub"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-}
-node {
-  name: "target_images/random_flip_left_right/random_uniform"
-  op: "Add"
-  input: "target_images/random_flip_left_right/random_uniform/mul"
-  input: "target_images/random_flip_left_right/random_uniform/min"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-}
-node {
-  name: "target_images/random_flip_left_right/Less/y"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_FLOAT
-        tensor_shape {
-        }
-        float_val: 0.5
-      }
-    }
-  }
-}
-node {
-  name: "target_images/random_flip_left_right/Less"
-  op: "Less"
-  input: "target_images/random_flip_left_right/random_uniform"
-  input: "target_images/random_flip_left_right/Less/y"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-}
-node {
-  name: "target_images/random_flip_left_right/Switch"
-  op: "Switch"
-  input: "target_images/random_flip_left_right/Less"
-  input: "target_images/random_flip_left_right/Less"
-  attr {
-    key: "T"
-    value {
-      type: DT_BOOL
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-        shape {
-        }
-      }
-    }
-  }
-}
-node {
-  name: "target_images/random_flip_left_right/switch_t"
-  op: "Identity"
-  input: "target_images/random_flip_left_right/Switch:1"
-  attr {
-    key: "T"
-    value {
-      type: DT_BOOL
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-}
-node {
-  name: "target_images/random_flip_left_right/switch_f"
-  op: "Identity"
-  input: "target_images/random_flip_left_right/Switch"
-  attr {
-    key: "T"
-    value {
-      type: DT_BOOL
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-}
-node {
-  name: "target_images/random_flip_left_right/pred_id"
-  op: "Identity"
-  input: "target_images/random_flip_left_right/Less"
-  attr {
-    key: "T"
-    value {
-      type: DT_BOOL
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-}
-node {
-  name: "target_images/random_flip_left_right/ReverseV2/axis"
-  op: "Const"
-  input: "^target_images/random_flip_left_right/switch_t"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 1
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-          dim {
-            size: 1
-          }
-        }
-        int_val: 1
-      }
-    }
-  }
-}
-node {
-  name: "target_images/random_flip_left_right/ReverseV2"
-  op: "ReverseV2"
-  input: "target_images/random_flip_left_right/ReverseV2/Switch:1"
-  input: "target_images/random_flip_left_right/ReverseV2/axis"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "Tidx"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: -1
-          }
-          dim {
-            size: 3
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "target_images/random_flip_left_right/ReverseV2/Switch"
-  op: "Switch"
-  input: "target_images/random_flip_left_right/control_dependency"
-  input: "target_images/random_flip_left_right/pred_id"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@load_images/preprocess/sub"
-      }
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: -1
-          }
-          dim {
-            size: 3
-          }
-        }
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: -1
-          }
-          dim {
-            size: 3
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "target_images/random_flip_left_right/Switch_1"
-  op: "Switch"
-  input: "target_images/random_flip_left_right/control_dependency"
-  input: "target_images/random_flip_left_right/pred_id"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@load_images/preprocess/sub"
-      }
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: -1
-          }
-          dim {
-            size: 3
-          }
-        }
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: -1
-          }
-          dim {
-            size: 3
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "target_images/random_flip_left_right/Merge"
-  op: "Merge"
-  input: "target_images/random_flip_left_right/Switch_1"
-  input: "target_images/random_flip_left_right/ReverseV2"
-  attr {
-    key: "N"
-    value {
-      i: 2
-    }
-  }
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: -1
-          }
-          dim {
-            size: 3
-          }
-        }
-        shape {
-        }
-      }
-    }
-  }
-}
-node {
   name: "target_images/resize/ExpandDims/dim"
   op: "Const"
   attr {
@@ -6776,7 +3155,7 @@ node {
 node {
   name: "target_images/resize/ExpandDims"
   op: "ExpandDims"
-  input: "target_images/random_flip_left_right/Merge"
+  input: "load_images/preprocess/sub"
   input: "target_images/resize/ExpandDims/dim"
   attr {
     key: "T"
@@ -6843,7 +3222,7 @@ node {
             size: 2
           }
         }
-        tensor_content: "\036\001\000\000\036\001\000\000"
+        tensor_content: "\000\001\000\000\000\001\000\000"
       }
     }
   }
@@ -6868,10 +3247,10 @@ node {
             size: 1
           }
           dim {
-            size: 286
+            size: 256
           }
           dim {
-            size: 286
+            size: 256
           }
           dim {
             size: 3
@@ -6903,10 +3282,10 @@ node {
       list {
         shape {
           dim {
-            size: 286
+            size: 256
           }
           dim {
-            size: 286
+            size: 256
           }
           dim {
             size: 3
@@ -7015,7 +3394,7 @@ node {
         dtype: DT_FLOAT
         tensor_shape {
         }
-        float_val: 31.0
+        float_val: 1.0
       }
     }
   }
@@ -7051,13 +3430,13 @@ node {
   attr {
     key: "seed"
     value {
-      i: 1826704191
+      i: 523669081
     }
   }
   attr {
     key: "seed2"
     value {
-      i: 127381207
+      i: 1222282283
     }
   }
 }
@@ -7189,1290 +3568,6 @@ node {
   }
 }
 node {
-  name: "target_images/strided_slice/stack"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 1
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-          dim {
-            size: 1
-          }
-        }
-        int_val: 0
-      }
-    }
-  }
-}
-node {
-  name: "target_images/strided_slice/stack_1"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 1
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-          dim {
-            size: 1
-          }
-        }
-        int_val: 1
-      }
-    }
-  }
-}
-node {
-  name: "target_images/strided_slice/stack_2"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 1
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-          dim {
-            size: 1
-          }
-        }
-        int_val: 1
-      }
-    }
-  }
-}
-node {
-  name: "target_images/strided_slice"
-  op: "StridedSlice"
-  input: "target_images/Cast"
-  input: "target_images/strided_slice/stack"
-  input: "target_images/strided_slice/stack_1"
-  input: "target_images/strided_slice/stack_2"
-  attr {
-    key: "Index"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "T"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "begin_mask"
-    value {
-      i: 0
-    }
-  }
-  attr {
-    key: "ellipsis_mask"
-    value {
-      i: 0
-    }
-  }
-  attr {
-    key: "end_mask"
-    value {
-      i: 0
-    }
-  }
-  attr {
-    key: "new_axis_mask"
-    value {
-      i: 0
-    }
-  }
-  attr {
-    key: "shrink_axis_mask"
-    value {
-      i: 1
-    }
-  }
-}
-node {
-  name: "target_images/strided_slice_1/stack"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 1
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-          dim {
-            size: 1
-          }
-        }
-        int_val: 1
-      }
-    }
-  }
-}
-node {
-  name: "target_images/strided_slice_1/stack_1"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 1
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-          dim {
-            size: 1
-          }
-        }
-        int_val: 2
-      }
-    }
-  }
-}
-node {
-  name: "target_images/strided_slice_1/stack_2"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 1
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-          dim {
-            size: 1
-          }
-        }
-        int_val: 1
-      }
-    }
-  }
-}
-node {
-  name: "target_images/strided_slice_1"
-  op: "StridedSlice"
-  input: "target_images/Cast"
-  input: "target_images/strided_slice_1/stack"
-  input: "target_images/strided_slice_1/stack_1"
-  input: "target_images/strided_slice_1/stack_2"
-  attr {
-    key: "Index"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "T"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "begin_mask"
-    value {
-      i: 0
-    }
-  }
-  attr {
-    key: "ellipsis_mask"
-    value {
-      i: 0
-    }
-  }
-  attr {
-    key: "end_mask"
-    value {
-      i: 0
-    }
-  }
-  attr {
-    key: "new_axis_mask"
-    value {
-      i: 0
-    }
-  }
-  attr {
-    key: "shrink_axis_mask"
-    value {
-      i: 1
-    }
-  }
-}
-node {
-  name: "target_images/crop_to_bounding_box/ExpandDims/dim"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-        }
-        int_val: 0
-      }
-    }
-  }
-}
-node {
-  name: "target_images/crop_to_bounding_box/ExpandDims"
-  op: "ExpandDims"
-  input: "target_images/resize/Squeeze"
-  input: "target_images/crop_to_bounding_box/ExpandDims/dim"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "Tdim"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 1
-          }
-          dim {
-            size: 286
-          }
-          dim {
-            size: 286
-          }
-          dim {
-            size: 3
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "target_images/crop_to_bounding_box/GreaterEqual/y"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-        }
-        int_val: 0
-      }
-    }
-  }
-}
-node {
-  name: "target_images/crop_to_bounding_box/GreaterEqual"
-  op: "GreaterEqual"
-  input: "target_images/strided_slice_1"
-  input: "target_images/crop_to_bounding_box/GreaterEqual/y"
-  attr {
-    key: "T"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-}
-node {
-  name: "target_images/crop_to_bounding_box/Assert/Const"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_STRING
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_STRING
-        tensor_shape {
-        }
-        string_val: "offset_width must be >= 0."
-      }
-    }
-  }
-}
-node {
-  name: "target_images/crop_to_bounding_box/Assert/Assert/data_0"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_STRING
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_STRING
-        tensor_shape {
-        }
-        string_val: "offset_width must be >= 0."
-      }
-    }
-  }
-}
-node {
-  name: "target_images/crop_to_bounding_box/Assert/Assert"
-  op: "Assert"
-  input: "target_images/crop_to_bounding_box/GreaterEqual"
-  input: "target_images/crop_to_bounding_box/Assert/Assert/data_0"
-  attr {
-    key: "T"
-    value {
-      list {
-        type: DT_STRING
-      }
-    }
-  }
-  attr {
-    key: "summarize"
-    value {
-      i: 3
-    }
-  }
-}
-node {
-  name: "target_images/crop_to_bounding_box/GreaterEqual_1/y"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-        }
-        int_val: 0
-      }
-    }
-  }
-}
-node {
-  name: "target_images/crop_to_bounding_box/GreaterEqual_1"
-  op: "GreaterEqual"
-  input: "target_images/strided_slice"
-  input: "target_images/crop_to_bounding_box/GreaterEqual_1/y"
-  attr {
-    key: "T"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-}
-node {
-  name: "target_images/crop_to_bounding_box/Assert_1/Const"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_STRING
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_STRING
-        tensor_shape {
-        }
-        string_val: "offset_height must be >= 0."
-      }
-    }
-  }
-}
-node {
-  name: "target_images/crop_to_bounding_box/Assert_1/Assert/data_0"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_STRING
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_STRING
-        tensor_shape {
-        }
-        string_val: "offset_height must be >= 0."
-      }
-    }
-  }
-}
-node {
-  name: "target_images/crop_to_bounding_box/Assert_1/Assert"
-  op: "Assert"
-  input: "target_images/crop_to_bounding_box/GreaterEqual_1"
-  input: "target_images/crop_to_bounding_box/Assert_1/Assert/data_0"
-  attr {
-    key: "T"
-    value {
-      list {
-        type: DT_STRING
-      }
-    }
-  }
-  attr {
-    key: "summarize"
-    value {
-      i: 3
-    }
-  }
-}
-node {
-  name: "target_images/crop_to_bounding_box/add/x"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-        }
-        int_val: 256
-      }
-    }
-  }
-}
-node {
-  name: "target_images/crop_to_bounding_box/add"
-  op: "Add"
-  input: "target_images/crop_to_bounding_box/add/x"
-  input: "target_images/strided_slice_1"
-  attr {
-    key: "T"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-}
-node {
-  name: "target_images/crop_to_bounding_box/LessEqual/y"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-        }
-        int_val: 286
-      }
-    }
-  }
-}
-node {
-  name: "target_images/crop_to_bounding_box/LessEqual"
-  op: "LessEqual"
-  input: "target_images/crop_to_bounding_box/add"
-  input: "target_images/crop_to_bounding_box/LessEqual/y"
-  attr {
-    key: "T"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-}
-node {
-  name: "target_images/crop_to_bounding_box/Assert_2/Const"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_STRING
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_STRING
-        tensor_shape {
-        }
-        string_val: "width must be >= target + offset."
-      }
-    }
-  }
-}
-node {
-  name: "target_images/crop_to_bounding_box/Assert_2/Assert/data_0"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_STRING
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_STRING
-        tensor_shape {
-        }
-        string_val: "width must be >= target + offset."
-      }
-    }
-  }
-}
-node {
-  name: "target_images/crop_to_bounding_box/Assert_2/Assert"
-  op: "Assert"
-  input: "target_images/crop_to_bounding_box/LessEqual"
-  input: "target_images/crop_to_bounding_box/Assert_2/Assert/data_0"
-  attr {
-    key: "T"
-    value {
-      list {
-        type: DT_STRING
-      }
-    }
-  }
-  attr {
-    key: "summarize"
-    value {
-      i: 3
-    }
-  }
-}
-node {
-  name: "target_images/crop_to_bounding_box/add_1/x"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-        }
-        int_val: 256
-      }
-    }
-  }
-}
-node {
-  name: "target_images/crop_to_bounding_box/add_1"
-  op: "Add"
-  input: "target_images/crop_to_bounding_box/add_1/x"
-  input: "target_images/strided_slice"
-  attr {
-    key: "T"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-}
-node {
-  name: "target_images/crop_to_bounding_box/LessEqual_1/y"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-        }
-        int_val: 286
-      }
-    }
-  }
-}
-node {
-  name: "target_images/crop_to_bounding_box/LessEqual_1"
-  op: "LessEqual"
-  input: "target_images/crop_to_bounding_box/add_1"
-  input: "target_images/crop_to_bounding_box/LessEqual_1/y"
-  attr {
-    key: "T"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-}
-node {
-  name: "target_images/crop_to_bounding_box/Assert_3/Const"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_STRING
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_STRING
-        tensor_shape {
-        }
-        string_val: "height must be >= target + offset."
-      }
-    }
-  }
-}
-node {
-  name: "target_images/crop_to_bounding_box/Assert_3/Assert/data_0"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_STRING
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_STRING
-        tensor_shape {
-        }
-        string_val: "height must be >= target + offset."
-      }
-    }
-  }
-}
-node {
-  name: "target_images/crop_to_bounding_box/Assert_3/Assert"
-  op: "Assert"
-  input: "target_images/crop_to_bounding_box/LessEqual_1"
-  input: "target_images/crop_to_bounding_box/Assert_3/Assert/data_0"
-  attr {
-    key: "T"
-    value {
-      list {
-        type: DT_STRING
-      }
-    }
-  }
-  attr {
-    key: "summarize"
-    value {
-      i: 3
-    }
-  }
-}
-node {
-  name: "target_images/crop_to_bounding_box/control_dependency"
-  op: "Identity"
-  input: "target_images/crop_to_bounding_box/ExpandDims"
-  input: "^target_images/crop_to_bounding_box/Assert/Assert"
-  input: "^target_images/crop_to_bounding_box/Assert_1/Assert"
-  input: "^target_images/crop_to_bounding_box/Assert_2/Assert"
-  input: "^target_images/crop_to_bounding_box/Assert_3/Assert"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@target_images/crop_to_bounding_box/ExpandDims"
-      }
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 1
-          }
-          dim {
-            size: 286
-          }
-          dim {
-            size: 286
-          }
-          dim {
-            size: 3
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "target_images/crop_to_bounding_box/stack/0"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-        }
-        int_val: 0
-      }
-    }
-  }
-}
-node {
-  name: "target_images/crop_to_bounding_box/stack/3"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-        }
-        int_val: 0
-      }
-    }
-  }
-}
-node {
-  name: "target_images/crop_to_bounding_box/stack"
-  op: "Pack"
-  input: "target_images/crop_to_bounding_box/stack/0"
-  input: "target_images/strided_slice"
-  input: "target_images/strided_slice_1"
-  input: "target_images/crop_to_bounding_box/stack/3"
-  attr {
-    key: "N"
-    value {
-      i: 4
-    }
-  }
-  attr {
-    key: "T"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 4
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "axis"
-    value {
-      i: 0
-    }
-  }
-}
-node {
-  name: "target_images/crop_to_bounding_box/stack_1"
-  op: "Const"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 4
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-          dim {
-            size: 4
-          }
-        }
-        tensor_content: "\377\377\377\377\000\001\000\000\000\001\000\000\377\377\377\377"
-      }
-    }
-  }
-}
-node {
-  name: "target_images/crop_to_bounding_box/Slice"
-  op: "Slice"
-  input: "target_images/crop_to_bounding_box/control_dependency"
-  input: "target_images/crop_to_bounding_box/stack"
-  input: "target_images/crop_to_bounding_box/stack_1"
-  attr {
-    key: "Index"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 1
-          }
-          dim {
-            size: 256
-          }
-          dim {
-            size: 256
-          }
-          dim {
-            size: 3
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "target_images/crop_to_bounding_box/Squeeze"
-  op: "Squeeze"
-  input: "target_images/crop_to_bounding_box/Slice"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 256
-          }
-          dim {
-            size: 256
-          }
-          dim {
-            size: 3
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "squeeze_dims"
-    value {
-      list {
-        i: 0
-      }
-    }
-  }
-}
-node {
   name: "batch/Const"
   op: "Const"
   attr {
@@ -8579,8 +3674,8 @@ node {
   op: "QueueEnqueueV2"
   input: "batch/fifo_queue"
   input: "load_images/ReaderReadV2"
-  input: "input_images/crop_to_bounding_box/Squeeze"
-  input: "target_images/crop_to_bounding_box/Squeeze"
+  input: "input_images/resize/Squeeze"
+  input: "target_images/resize/Squeeze"
   attr {
     key: "Tcomponents"
     value {
@@ -9028,13 +4123,13 @@ node {
   attr {
     key: "seed"
     value {
-      i: 1826704191
+      i: 523669081
     }
   }
   attr {
     key: "seed2"
     value {
-      i: 277
+      i: 116
     }
   }
 }
@@ -10000,13 +5095,13 @@ node {
   attr {
     key: "seed"
     value {
-      i: 1826704191
+      i: 523669081
     }
   }
   attr {
     key: "seed2"
     value {
-      i: 300
+      i: 139
     }
   }
 }
@@ -10740,13 +5835,13 @@ node {
   attr {
     key: "seed"
     value {
-      i: 1826704191
+      i: 523669081
     }
   }
   attr {
     key: "seed2"
     value {
-      i: 316
+      i: 155
     }
   }
 }
@@ -12353,13 +7448,13 @@ node {
   attr {
     key: "seed"
     value {
-      i: 1826704191
+      i: 523669081
     }
   }
   attr {
     key: "seed2"
     value {
-      i: 358
+      i: 197
     }
   }
 }
@@ -13093,13 +8188,13 @@ node {
   attr {
     key: "seed"
     value {
-      i: 1826704191
+      i: 523669081
     }
   }
   attr {
     key: "seed2"
     value {
-      i: 374
+      i: 213
     }
   }
 }
@@ -14706,13 +9801,13 @@ node {
   attr {
     key: "seed"
     value {
-      i: 1826704191
+      i: 523669081
     }
   }
   attr {
     key: "seed2"
     value {
-      i: 416
+      i: 255
     }
   }
 }
@@ -15446,13 +10541,13 @@ node {
   attr {
     key: "seed"
     value {
-      i: 1826704191
+      i: 523669081
     }
   }
   attr {
     key: "seed2"
     value {
-      i: 432
+      i: 271
     }
   }
 }
@@ -17059,13 +12154,13 @@ node {
   attr {
     key: "seed"
     value {
-      i: 1826704191
+      i: 523669081
     }
   }
   attr {
     key: "seed2"
     value {
-      i: 474
+      i: 313
     }
   }
 }
@@ -17799,13 +12894,13 @@ node {
   attr {
     key: "seed"
     value {
-      i: 1826704191
+      i: 523669081
     }
   }
   attr {
     key: "seed2"
     value {
-      i: 490
+      i: 329
     }
   }
 }
@@ -19412,13 +14507,13 @@ node {
   attr {
     key: "seed"
     value {
-      i: 1826704191
+      i: 523669081
     }
   }
   attr {
     key: "seed2"
     value {
-      i: 532
+      i: 371
     }
   }
 }
@@ -20152,13 +15247,13 @@ node {
   attr {
     key: "seed"
     value {
-      i: 1826704191
+      i: 523669081
     }
   }
   attr {
     key: "seed2"
     value {
-      i: 548
+      i: 387
     }
   }
 }
@@ -21765,13 +16860,13 @@ node {
   attr {
     key: "seed"
     value {
-      i: 1826704191
+      i: 523669081
     }
   }
   attr {
     key: "seed2"
     value {
-      i: 590
+      i: 429
     }
   }
 }
@@ -22505,13 +17600,13 @@ node {
   attr {
     key: "seed"
     value {
-      i: 1826704191
+      i: 523669081
     }
   }
   attr {
     key: "seed2"
     value {
-      i: 606
+      i: 445
     }
   }
 }
@@ -24118,13 +19213,13 @@ node {
   attr {
     key: "seed"
     value {
-      i: 1826704191
+      i: 523669081
     }
   }
   attr {
     key: "seed2"
     value {
-      i: 648
+      i: 487
     }
   }
 }
@@ -24858,13 +19953,13 @@ node {
   attr {
     key: "seed"
     value {
-      i: 1826704191
+      i: 523669081
     }
   }
   attr {
     key: "seed2"
     value {
-      i: 664
+      i: 503
     }
   }
 }
@@ -26280,13 +21375,13 @@ node {
   attr {
     key: "seed"
     value {
-      i: 1826704191
+      i: 523669081
     }
   }
   attr {
     key: "seed2"
     value {
-      i: 700
+      i: 539
     }
   }
 }
@@ -27859,13 +22954,13 @@ node {
   attr {
     key: "seed"
     value {
-      i: 1826704191
+      i: 523669081
     }
   }
   attr {
     key: "seed2"
     value {
-      i: 738
+      i: 577
     }
   }
 }
@@ -29247,13 +24342,13 @@ node {
   attr {
     key: "seed"
     value {
-      i: 1826704191
+      i: 523669081
     }
   }
   attr {
     key: "seed2"
     value {
-      i: 774
+      i: 613
     }
   }
 }
@@ -29865,13 +24960,13 @@ node {
   attr {
     key: "seed"
     value {
-      i: 1826704191
+      i: 523669081
     }
   }
   attr {
     key: "seed2"
     value {
-      i: 792
+      i: 631
     }
   }
 }
@@ -31444,13 +26539,13 @@ node {
   attr {
     key: "seed"
     value {
-      i: 1826704191
+      i: 523669081
     }
   }
   attr {
     key: "seed2"
     value {
-      i: 830
+      i: 669
     }
   }
 }
@@ -32832,13 +27927,13 @@ node {
   attr {
     key: "seed"
     value {
-      i: 1826704191
+      i: 523669081
     }
   }
   attr {
     key: "seed2"
     value {
-      i: 866
+      i: 705
     }
   }
 }
@@ -33450,13 +28545,13 @@ node {
   attr {
     key: "seed"
     value {
-      i: 1826704191
+      i: 523669081
     }
   }
   attr {
     key: "seed2"
     value {
-      i: 884
+      i: 723
     }
   }
 }
@@ -35029,13 +30124,13 @@ node {
   attr {
     key: "seed"
     value {
-      i: 1826704191
+      i: 523669081
     }
   }
   attr {
     key: "seed2"
     value {
-      i: 922
+      i: 761
     }
   }
 }
@@ -36417,13 +31512,13 @@ node {
   attr {
     key: "seed"
     value {
-      i: 1826704191
+      i: 523669081
     }
   }
   attr {
     key: "seed2"
     value {
-      i: 958
+      i: 797
     }
   }
 }
@@ -37035,13 +32130,13 @@ node {
   attr {
     key: "seed"
     value {
-      i: 1826704191
+      i: 523669081
     }
   }
   attr {
     key: "seed2"
     value {
-      i: 976
+      i: 815
     }
   }
 }
@@ -38614,13 +33709,13 @@ node {
   attr {
     key: "seed"
     value {
-      i: 1826704191
+      i: 523669081
     }
   }
   attr {
     key: "seed2"
     value {
-      i: 1014
+      i: 853
     }
   }
 }
@@ -40112,13 +35207,13 @@ node {
   attr {
     key: "seed"
     value {
-      i: 1826704191
+      i: 523669081
     }
   }
   attr {
     key: "seed2"
     value {
-      i: 1052
+      i: 891
     }
   }
 }
@@ -41691,13 +36786,13 @@ node {
   attr {
     key: "seed"
     value {
-      i: 1826704191
+      i: 523669081
     }
   }
   attr {
     key: "seed2"
     value {
-      i: 1090
+      i: 929
     }
   }
 }
@@ -43189,13 +38284,13 @@ node {
   attr {
     key: "seed"
     value {
-      i: 1826704191
+      i: 523669081
     }
   }
   attr {
     key: "seed2"
     value {
-      i: 1128
+      i: 967
     }
   }
 }
@@ -44768,13 +39863,13 @@ node {
   attr {
     key: "seed"
     value {
-      i: 1826704191
+      i: 523669081
     }
   }
   attr {
     key: "seed2"
     value {
-      i: 1166
+      i: 1005
     }
   }
 }
@@ -46266,13 +41361,13 @@ node {
   attr {
     key: "seed"
     value {
-      i: 1826704191
+      i: 523669081
     }
   }
   attr {
     key: "seed2"
     value {
-      i: 1204
+      i: 1043
     }
   }
 }
@@ -47845,13 +42940,13 @@ node {
   attr {
     key: "seed"
     value {
-      i: 1826704191
+      i: 523669081
     }
   }
   attr {
     key: "seed2"
     value {
-      i: 1242
+      i: 1081
     }
   }
 }
@@ -49343,13 +44438,13 @@ node {
   attr {
     key: "seed"
     value {
-      i: 1826704191
+      i: 523669081
     }
   }
   attr {
     key: "seed2"
     value {
-      i: 1280
+      i: 1119
     }
   }
 }
@@ -51120,13 +46215,13 @@ node {
   attr {
     key: "seed"
     value {
-      i: 1826704191
+      i: 523669081
     }
   }
   attr {
     key: "seed2"
     value {
-      i: 1323
+      i: 1162
     }
   }
 }
@@ -52173,13 +47268,13 @@ node {
   attr {
     key: "seed"
     value {
-      i: 1826704191
+      i: 523669081
     }
   }
   attr {
     key: "seed2"
     value {
-      i: 1348
+      i: 1187
     }
   }
 }
@@ -52913,13 +48008,13 @@ node {
   attr {
     key: "seed"
     value {
-      i: 1826704191
+      i: 523669081
     }
   }
   attr {
     key: "seed2"
     value {
-      i: 1364
+      i: 1203
     }
   }
 }
@@ -54607,13 +49702,13 @@ node {
   attr {
     key: "seed"
     value {
-      i: 1826704191
+      i: 523669081
     }
   }
   attr {
     key: "seed2"
     value {
-      i: 1408
+      i: 1247
     }
   }
 }
@@ -55347,13 +50442,13 @@ node {
   attr {
     key: "seed"
     value {
-      i: 1826704191
+      i: 523669081
     }
   }
   attr {
     key: "seed2"
     value {
-      i: 1424
+      i: 1263
     }
   }
 }
@@ -57041,13 +52136,13 @@ node {
   attr {
     key: "seed"
     value {
-      i: 1826704191
+      i: 523669081
     }
   }
   attr {
     key: "seed2"
     value {
-      i: 1468
+      i: 1307
     }
   }
 }
@@ -57781,13 +52876,13 @@ node {
   attr {
     key: "seed"
     value {
-      i: 1826704191
+      i: 523669081
     }
   }
   attr {
     key: "seed2"
     value {
-      i: 1484
+      i: 1323
     }
   }
 }
@@ -59475,13 +54570,13 @@ node {
   attr {
     key: "seed"
     value {
-      i: 1826704191
+      i: 523669081
     }
   }
   attr {
     key: "seed2"
     value {
-      i: 1528
+      i: 1367
     }
   }
 }
