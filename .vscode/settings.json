@@ -6,6 +6,7 @@
         "cmap",
         "conv",
         "dtype",
+        "findxy",
         "getcwd",
         "imshow",
         "ksize",
