@@ -23,7 +23,7 @@
 
     const loadModel = () => {
         return tf.loadLayersModel(urlModel);
-    }
+    };
 
     const loadTestData = () => {
         return new Promise((resolved, rejected) => {
@@ -39,7 +39,7 @@
                 rejected(ex);
             }
         });  
-    }
+    };
 
     const zeroFill = (number,width) => {
       width -= number.toString().length;
@@ -48,11 +48,11 @@
         return new Array( width + (/\./.test( number ) ? 2 : 1) ).join( '0' ) + number;
       }
       return number + ""; // always return a string
-    }
+    };
 
     const erase = () => {
         ctx.clearRect(0, 0, WIDTH, HEIGHT);
-    }
+    };
 
     const save = async () => {
         const imageData = ctx.getImageData(0, 0, 28, 28).data;
@@ -69,7 +69,7 @@
         const number = predictCanvas(image);
 
         document.getElementsByTagName("h3")[0].innerHTML = number;
-    }
+    };
 
     const draw = () => {
         ctx.beginPath();
@@ -79,7 +79,7 @@
         ctx.lineWidth = y;
         ctx.stroke();
         ctx.closePath();
-    }
+    };
 
     const findxy = (res, e) => {
         if (res == 'down') {
@@ -112,7 +112,7 @@
                 draw();
             }
         }
-    }
+    };
 
     const getRandomData = (idx) => {
         const image = [];
@@ -132,26 +132,26 @@
         });
 
         return image;
-    }
+    };
 
     const setupCanvas = () => {
         canvas = document.getElementById("myCanvas");
         ctx = canvas.getContext("2d");
 
         canvas.addEventListener("mousemove", (e) => {
-            findxy('move', e)
+            findxy('move', e);
         }, false);
         canvas.addEventListener("mousedown", (e) => {
-            findxy('down', e)
+            findxy('down', e);
         }, false);
         canvas.addEventListener("mouseup", (e) => {
-            findxy('up', e)
+            findxy('up', e);
         }, false);
         canvas.addEventListener("mouseout", (e) => {
-            findxy('out', e)
+            findxy('out', e);
         }, false);
 
-    }
+    };
 
     const predictCanvas = (image) => {
         canvas = document.getElementById("myCanvas");
@@ -164,8 +164,8 @@
         console.log(tf.memory());
         //console.log(CLASS_NUMBERS[result.indexOf(1)]);
 
-        return CLASS_NUMBERS[result.indexOf(1)]
-    }
+        return CLASS_NUMBERS[result.indexOf(1)];
+    };
 
     return (async () => {
         model = await loadModel();     
