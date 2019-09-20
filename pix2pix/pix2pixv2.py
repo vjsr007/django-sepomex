@@ -152,3 +152,4 @@ print('temp files removed')
 
 # https://www.apsl.net/blog/2017/12/05/tensor-flow-para-principiantes-i/
 # https://github.com/zaidalyafeai/zaidalyafeai.github.io/blob/master/pix2pix/convert_keras.py
+# https://machinelearningmastery.com/how-to-develop-a-pix2pix-gan-for-image-to-image-translation/
