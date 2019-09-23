@@ -1,13 +1,21 @@
 from django.urls import path
-from .views import ListUsuarioView, CustomAuthToken
-from rest_framework.authtoken import views
-from . import views
+from .view.users import ListUserView
+from .view.auth import CustomAuthToken, get_token
+from .view.home import index
 
+# Home
 urlpatterns = [
-    path('', views.index, name='list'),
-    path('usuario/', ListUsuarioView.as_view(), name="usuario-all"),
-    path('index/', views.index, name='index'),
-    path('gettoken/', views.get_token, name='get_token'),
-    path('another/', views.another, name='another'),
+    path('', index, name='home'),
+    path('index/', index, name='index'),
+]
+
+# Users
+urlpatterns += [
+    path('user/', ListUserView.as_view(), name="user-all"),
+]
+
+# Token
+urlpatterns += [
+    path('gettoken/', get_token , name='get_token'),
     path('api-token-auth/', CustomAuthToken.as_view())
 ]
