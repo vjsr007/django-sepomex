@@ -67,13 +67,3 @@ class Usuariorol(models.Model):
     class Meta:
         managed = False
         db_table = 'UsuarioRol'
-
-class Classification(models.Model):
-    def predict(self):
-        return "empty"
-
-    def save(self, *args, **kwargs):
-        return "empty"
-
-    def get_absolute_url(self):
-        return "empty"
