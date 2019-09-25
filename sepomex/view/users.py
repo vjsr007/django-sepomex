@@ -51,29 +51,6 @@ class get_delete_update_user(RetrieveUpdateDestroyAPIView):
         }
         return Response(content, status=status.HTTP_204_NO_CONTENT)
 
-@authentication_classes([SessionAuthentication, BasicAuthentication, TokenAuthentication])
-@permission_classes([IsAuthenticated])
-class get_post_user(ListCreateAPIView):
-    serializer_class = UserSerializer
-
-    def get_queryset(self):
-       users = User.objects.all()
-       return users
-
-    # Get all users
-    def get(self, request):
-        user = self.get_queryset()
-        serializer = self.serializer_class(user, many=True)
-        return Response(serializer.data)
-
-    # Create a new user
-    def post(self, request):
-        serializer = UserSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 class get_post_user(ListCreateAPIView):
     serializer_class = UserSerializer
 
@@ -83,7 +60,7 @@ class get_post_user(ListCreateAPIView):
 
     # Get all users
     @authentication_classes([SessionAuthentication, BasicAuthentication, TokenAuthentication])
-    @permission_classes([IsAuthenticated])
+    @permission_classes([IsAuthenticated])    
     def get(self, request):
         user = self.get_queryset()
         serializer = self.serializer_class(user, many=True)
