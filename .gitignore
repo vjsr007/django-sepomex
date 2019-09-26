@@ -2,3 +2,4 @@ catdog/input/test1/*.jpg
 catdog/input/train/*.jpg
 *.zip
 model-400*
+*.npz
