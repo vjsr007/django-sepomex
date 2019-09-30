@@ -31,7 +31,7 @@ CREATE_ZIP_IMAGES = False
 PLOT_SAMPLE = False
 TRAIN_MODEL = False
 PREDICT_REAL_IMAGES = True
- 
+
 # load all images in a directory into memory
 def load_images(path, size=(256,512)):
 	src_list, tar_list = list(), list()
@@ -343,8 +343,7 @@ def predict_real_images():
     # load dataset
     [X1, X2] = load_real_samples('maps_256.npz')
     print('Loaded', X1.shape, X2.shape)
-    # load model
-    model = load_model('model_109600.h5')
+    model = load_model('maps/model_032880.h5')
     # select random example
     ix = randint(0, len(X1), 1)
     src_image, tar_image = X1[ix], X2[ix]

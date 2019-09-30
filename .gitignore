@@ -3,3 +3,4 @@ catdog/input/train/*.jpg
 *.zip
 model-400*
 *.npz
+maps/*.h5
