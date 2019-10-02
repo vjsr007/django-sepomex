@@ -8,12 +8,12 @@ import seaborn as sns
 import numpy as np
 
 # https://towardsdatascience.com/how-to-teach-an-ai-to-play-games-deep-reinforcement-learning-28f9b920440a
+# https://italolelis.com/snake
 
 # Set options to activate or deactivate the game view, and its speed
 display_option = True
 speed = 0
 pygame.font.init()
-
 
 class Game:
 
@@ -169,7 +169,7 @@ def run():
     score_plot = []
     counter_plot =[]
     record = 0
-    while counter_games < 150:
+    while counter_games < 300:
         # Initialize classes
         game = Game(440, 440)
         player1 = game.player
@@ -219,6 +219,5 @@ def run():
         counter_plot.append(counter_games)
     agent.model.save_weights('snakegame/weights.hdf5')
     plot_seaborn(counter_plot, score_plot)
-
 
 run()
