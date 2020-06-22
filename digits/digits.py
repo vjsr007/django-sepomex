@@ -11,7 +11,7 @@ import tensorflowjs as tfjs
 
 # print(os.listdir("digits/input"))
 
-TRAIN=False
+TRAIN=True
 FAST_RUN=True
 batch_size=32
 epochs=100

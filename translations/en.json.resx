@@ -1,0 +1,529 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AuthorizeLink.components.Authorisation.nav.index.title" xml:space="preserve">
+    <value>Request for Evidence Application</value>
+  </data>
+  <data name="AuthorizeLink.components.Authorize.Toaster.error" xml:space="preserve">
+    <value>The email entered does not match the address associated with the Request for Evidence Application Request Link. Please retry</value>
+  </data>
+  <data name="AuthorizeLink.components.Authorize.error" xml:space="preserve">
+    <value>We couldn’t find an account with this email address</value>
+  </data>
+  <data name="AuthorizeLink.components.MagicLinkAuthentication.index.form" xml:space="preserve">
+    <value>Please enter your email address</value>
+  </data>
+  <data name="AuthorizeLink.components.MagicLinkAuthentication.index.form.button.next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="AuthorizeLink.components.MagicLinkAuthentication.index.form.placeholder" xml:space="preserve">
+    <value>Enter Your Email</value>
+  </data>
+  <data name="AuthorizeLink.components.PassCodeAuthentication.index.form.resend-code.error.message" xml:space="preserve">
+    <value>Sorry, access code could not be resend, please try again</value>
+  </data>
+  <data name="AuthorizeLink.components.RFELinkExpired.index.title is-4" xml:space="preserve">
+    <value>Sorry, the requested link has expired</value>
+  </data>
+  <data name="AuthorizeLink.components.RFELinkRedirection.index.title" xml:space="preserve">
+    <value>Redirecting...</value>
+  </data>
+  <data name="AuthorizeLink.components.RFEPassCodeAuthentication.index.form" xml:space="preserve">
+    <value>Please enter the access code sent to your email</value>
+  </data>
+  <data name="AuthorizeLink.components.RFEPassCodeAuthentication.index.form.button.access" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="AuthorizeLink.components.RFEPassCodeAuthentication.index.form.placeholder" xml:space="preserve">
+    <value>Enter passcode</value>
+  </data>
+  <data name="AuthorizeLink.components.RFEPassCodeAuthentication.index.form.request-access.link" xml:space="preserve">
+    <value>Request new access link</value>
+  </data>
+  <data name="AuthorizeLink.components.RFEPassCodeAuthentication.index.form.resend-code.success.message" xml:space="preserve">
+    <value>Access code successfully sent to your email</value>
+  </data>
+  <data name="AuthorizeLink.components.RFEPassCodeAuthentication.index.form.resend-wrapper.link" xml:space="preserve">
+    <value>Resend Code</value>
+  </data>
+  <data name="AuthorizeLink.components.RFEPassCodeAuthentication.index.form.resend-wrapper.text" xml:space="preserve">
+    <value>Didn't receive the access code? </value>
+  </data>
+  <data name="AuthorizeLink.components.RFEPassCodeAuthentication.validatePassCode.Toaster.expired.error" xml:space="preserve">
+    <value>The access code has expired. Please select 'Resend Code' below to get a new code</value>
+  </data>
+  <data name="AuthorizeLink.components.RFEPassCodeAuthentication.validatePassCode.Toaster.invalid.error" xml:space="preserve">
+    <value>Invalid access code. Please enter the access code again</value>
+  </data>
+  <data name="AuthorizeLink.components.RFEPassCodeAuthentication.validatePassCode.Toaster.limit.invalid.error" xml:space="preserve">
+    <value>You have exceeded the maximum number of attempts. Please request a new access link</value>
+  </data>
+  <data name="AuthorizeLink.components.confirmation.completed" xml:space="preserve">
+    <value>The related confirmation has been completed and signed off. You do not have any action items to perform.</value>
+  </data>
+  <data name="AuthorizeLink.components.magicLinkNotFOund.index.shortdesc" xml:space="preserve">
+    <value>Please ensure that correct link is used to access</value>
+  </data>
+  <data name="AuthorizeLink.components.magicLinkNotFOund.index.title is-4" xml:space="preserve">
+    <value>Sorry, the link is not found</value>
+  </data>
+  <data name="AuthorizeLink.index.RFE-client-label" xml:space="preserve">
+    <value>Engagement</value>
+  </data>
+  <data name="AuthorizeLink.index.bottomdesc" xml:space="preserve">
+    <value>EY refers to the global organisation, and may refer to one or more, of the member firms of Ernst &amp; Young Global Limited,each of which is a separate legal entity. Ernst &amp; Young is a Global Limited, a UK company Limited by guarantee, does not provide services to clients</value>
+  </data>
+  <data name="AuthorizeLink.index.shortdesc" xml:space="preserve">
+    <value>A secure way to share your documents with EY</value>
+  </data>
+  <data name="AuthorizeLink.index.title" xml:space="preserve">
+    <value>Welcome to EY</value>
+  </data>
+  <data name="RFEDeleted.components.main.text" xml:space="preserve">
+    <value>Sorry, the project you are trying to access has been deleted</value>
+  </data>
+  <data name="app.title" xml:space="preserve">
+    <value>Request for Evidence Application</value>
+  </data>
+  <data name="button.add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="button.back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="button.next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="button.select" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="button.start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="common.cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="common.error" xml:space="preserve">
+    <value>An error has ocurred</value>
+  </data>
+  <data name="common.loading" xml:space="preserve">
+    <value>Loading...</value>
+  </data>
+  <data name="common.ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="common.yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="components.ConfirmationViewCommentsModel.index.Modal.header" xml:space="preserve">
+    <value>Comments (optional)</value>
+  </data>
+  <data name="components.ConfirmationViewDocumentsModel.index.Modal.header" xml:space="preserve">
+    <value>Upload file</value>
+  </data>
+  <data name="components.ConfirmationViewDocumentsModel.index.Modal.uploadFile" xml:space="preserve">
+    <value>Drag and Drop Cover letter here or click to upload</value>
+  </data>
+  <data name="components.ConfirmationViewDocumentsModel.index.size.limit.exceed" xml:space="preserve">
+    <value>File exceeds the 20 mb upload limit</value>
+  </data>
+  <data name="components.ConfirmationViewDocumentsModel.index.type.not.supported" xml:space="preserve">
+    <value>File type not supported</value>
+  </data>
+  <data name="components.ContactGrid.TableHeaderColumn.View" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="components.ContactGrid.TableHeaderColumn.button" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="components.Dashboard.maximum.upload.size" xml:space="preserve">
+    <value>Maximum upload file: </value>
+  </data>
+  <data name="components.Dashboard.size.limit.exceed" xml:space="preserve">
+    <value>File exceeds the</value>
+  </data>
+  <data name="components.Dashboard.upload.limit" xml:space="preserve">
+    <value>mb upload limit</value>
+  </data>
+  <data name="components.DashboardDocumentsModal.index.Modal.header" xml:space="preserve">
+    <value>Files uploaded</value>
+  </data>
+  <data name="components.ErrorBoundary.Button.onClick" xml:space="preserve">
+    <value> Reset</value>
+  </data>
+  <data name="components.ErrorBoundary.Message.Content" xml:space="preserve">
+    <value>An error occurred. If it does persist, please provide the above information below to the support team</value>
+  </data>
+  <data name="components.ErrorBoundary.Message.Header" xml:space="preserve">
+    <value>Error message</value>
+  </data>
+  <data name="components.ErrorBoundary.Message.Header_firstLine" xml:space="preserve">
+    <value>Something went wrong</value>
+  </data>
+  <data name="components.ErrorBoundary.Message.Header_secondLine" xml:space="preserve">
+    <value>You can reset the application by clicking the button below</value>
+  </data>
+  <data name="components.ErrorBoundary.Message.Header_thirdLine" xml:space="preserve">
+    <value>If the error persists, please provide the above information to the support team</value>
+  </data>
+  <data name="components.InvoiceGrid.no_file_message" xml:space="preserve">
+    <value>Upload file</value>
+  </data>
+  <data name="components.LoadingSpinner.index.div" xml:space="preserve">
+    <value> Uploading Files...</value>
+  </data>
+  <data name="components.SubmitForm.submit" xml:space="preserve">
+    <value>Sign-off and submit</value>
+  </data>
+  <data name="components.ViewDocumentsModel.DeleteModel.button.cancelButton" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="components.ViewDocumentsModel.DeleteModel.button.confirmButton" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="components.ViewDocumentsModel.DeleteModel.content" xml:space="preserve">
+    <value>Are you sure you want to delete this file?</value>
+  </data>
+  <data name="components.ViewDocumentsModel.DeleteModel.header" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="components.ViewDocumentsModel.index.Modal.button" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="components.ViewDocumentsModel.index.Modal.header" xml:space="preserve">
+    <value>Files uploaded</value>
+  </data>
+  <data name="components.ViewInvoicesModel.DeleteModel.content" xml:space="preserve">
+    <value>Are you sure you want to delete this file?</value>
+  </data>
+  <data name="components.ViewInvoicesModel.DeleteModel.header" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="components.VirusScanModel.index.Modal.header" xml:space="preserve">
+    <value>Virus Infected Files</value>
+  </data>
+  <data name="components.comments.index.addComment" xml:space="preserve">
+    <value>Add comments</value>
+  </data>
+  <data name="components.comments.index.addErrorMessage" xml:space="preserve">
+    <value>An error occurred while adding comment, please try again</value>
+  </data>
+  <data name="components.comments.index.addErrorMessage.file_format" xml:space="preserve">
+    <value>Only ## can be submitted for machine reading</value>
+  </data>
+  <data name="components.comments.index.addErrorMessage.infectedfiles" xml:space="preserve">
+    <value>File(s) '##' seems virus infected. Please reupload new files</value>
+  </data>
+  <data name="components.comments.index.addSingleComment" xml:space="preserve">
+    <value>Add a comment</value>
+  </data>
+  <data name="components.comments.index.addSuccessMessage" xml:space="preserve">
+    <value>Comment is added successfully</value>
+  </data>
+  <data name="components.comments.index.cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="components.comments.index.comment" xml:space="preserve">
+    <value>Comments</value>
+  </data>
+  <data name="components.comments.index.commentvalidationMessage" xml:space="preserve">
+    <value>Please enter a comment</value>
+  </data>
+  <data name="components.comments.index.commentvalidationMessage.untrusted" xml:space="preserve">
+    <value>Only plain text comments are allowed.</value>
+  </data>
+  <data name="components.comments.index.confirm" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="components.comments.index.edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="components.comments.index.editComment" xml:space="preserve">
+    <value>Edit comment</value>
+  </data>
+  <data name="components.comments.index.limit.characters" xml:space="preserve">
+    <value>characters</value>
+  </data>
+  <data name="components.comments.index.limit.max" xml:space="preserve">
+    <value>Max.</value>
+  </data>
+  <data name="components.comments.index.limit.max280" xml:space="preserve">
+    <value>Max. 280 characters.</value>
+  </data>
+  <data name="components.comments.index.limit.maxCharacters" xml:space="preserve">
+    <value>Max. 280 characters. Limited to 1 comment only.</value>
+  </data>
+  <data name="components.comments.index.previous" xml:space="preserve">
+    <value>Previous comments</value>
+  </data>
+  <data name="components.comments.index.submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="components.layout.elements.MenuFooter.Modal.trigger" xml:space="preserve">
+    <value>Privacy Policy</value>
+  </data>
+  <data name="components.layout.elements.MenuHeader.Container.Menu.help" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="components.layout.elements.MenuHeader.Container.Menu.privacy" xml:space="preserve">
+    <value>Privacy</value>
+  </data>
+  <data name="components.layout.elements.MenuHeader.Container.Menu.signout" xml:space="preserve">
+    <value>Sign out</value>
+  </data>
+  <data name="components.layout.elements.MenuHeader.Container.Menu.span" xml:space="preserve">
+    <value>Request for Evidence Application</value>
+  </data>
+  <data name="components.layout.elements.MenuHeader.Container.Menu1.spanContact" xml:space="preserve">
+    <value>Request for Evidence Application</value>
+  </data>
+  <data name="components.layout.elements.MenuHeader.Menu.HelpDesk.Contact" xml:space="preserve">
+    <value>Contact Help</value>
+  </data>
+  <data name="components.layout.elements.MenuHeader.Menu.HelpDesk.FAQ.Text1" xml:space="preserve">
+    <value>Users of Request for Evidence(RFE) must be invited by the auditor in order to access the engagement.</value>
+  </data>
+  <data name="components.layout.elements.MenuHeader.Menu.HelpDesk.FAQ.Text2" xml:space="preserve">
+    <value>The auditor, who sends the request for evidence email, and the recipient of the request for evidence email can access the RFE application.</value>
+  </data>
+  <data name="components.layout.elements.MenuHeader.Menu.HelpDesk.FAQ1" xml:space="preserve">
+    <value>1.- Why is my email not found?</value>
+  </data>
+  <data name="components.layout.elements.MenuHeader.Menu.HelpDesk.FAQ2" xml:space="preserve">
+    <value>2.- Who can access the RFE application?</value>
+  </data>
+  <data name="components.layout.elements.MenuHeader.Menu.HelpDesk.FAQs" xml:space="preserve">
+    <value>FAQs:</value>
+  </data>
+  <data name="components.layout.elements.MenuHeader.Menu.HelpDesk.Number1" xml:space="preserve">
+    <value>1 800 123 4567</value>
+  </data>
+  <data name="components.logOut.cancel" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="components.logOut.confirm" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="components.messages.SuccessMessage.label" xml:space="preserve">
+    <value>You have successfully completed the request{br} Please sign out or close the browser.</value>
+  </data>
+  <data name="components.pages.CommentsComponent.Error" xml:space="preserve">
+    <value>Error while trying to get the comments</value>
+  </data>
+  <data name="components.pages.CommentsComponent.noUpdated" xml:space="preserve">
+    <value>Comments not updated</value>
+  </data>
+  <data name="components.pages.ContactComponent.filesUploaded" xml:space="preserve">
+    <value>Successfully files uploaded</value>
+  </data>
+  <data name="components.pages.ContactComponent.filesUploeadedError" xml:space="preserve">
+    <value>files not uploaded</value>
+  </data>
+  <data name="components.pages.ContactComponent.lessThan100" xml:space="preserve">
+    <value>Value needs to have less than 100 characters</value>
+  </data>
+  <data name="components.pages.ContactComponent.noUpdated" xml:space="preserve">
+    <value>Contacts not updated</value>
+  </data>
+  <data name="components.pages.ContactComponent.onlyPDF" xml:space="preserve">
+    <value>Only PDF files are allowed</value>
+  </data>
+  <data name="components.pages.ContactComponent.phoneError" xml:space="preserve">
+    <value>Phone can not contain more than 20 characters</value>
+  </data>
+  <data name="components.pages.FileUploadComponent.HttpErrorMessage" xml:space="preserve">
+    <value>The files could not be uploaded,please try again</value>
+  </data>
+  <data name="components.pages.FileUploadComponent.button.drag" xml:space="preserve">
+    <value>Drag and Drop file(s) to upload</value>
+  </data>
+  <data name="components.pages.FileUploadComponent.button.drag.for.ap" xml:space="preserve">
+    <value>for</value>
+  </data>
+  <data name="components.pages.FileUploadComponent.button.drag.for.aria" xml:space="preserve">
+    <value>for </value>
+  </data>
+  <data name="components.pages.FileUploadComponent.button.drag.for.invoices.ap" xml:space="preserve">
+    <value> invoice(s) </value>
+  </data>
+  <data name="components.pages.FileUploadComponent.button.drag.for.invoices.aria" xml:space="preserve">
+    <value> invoice </value>
+  </data>
+  <data name="components.pages.FileUploadComponent.button.drag.only.aria" xml:space="preserve">
+    <value>only</value>
+  </data>
+  <data name="components.pages.FileUploadComponent.button.text" xml:space="preserve">
+    <value>or select file(s) to upload</value>
+  </data>
+  <data name="components.pages.FileUploadComponent.duplicate.popuptext" xml:space="preserve">
+    <value>No duplicate documents are allowed.  Only one of the duplicated documents will be loaded.</value>
+  </data>
+  <data name="components.pages.FileUploadComponent.errorMessage" xml:space="preserve">
+    <value>An error occured while uploading file(s)</value>
+  </data>
+  <data name="components.pages.FileUploadComponent.errorMessage_count" xml:space="preserve">
+    <value>Maximum 5 files should be dropped together</value>
+  </data>
+  <data name="components.pages.FileUploadComponent.errorMessage_fileSize" xml:space="preserve">
+    <value>Maximum size of a file should not be more than 5 MB</value>
+  </data>
+  <data name="components.pages.FileUploadComponent.errorMessage_pdf" xml:space="preserve">
+    <value>Only PDFs can be submitted for machine reading</value>
+  </data>
+  <data name="components.pages.FileUploadComponent.errorMessage_size" xml:space="preserve">
+    <value>Maximum file size should not be more than 20 MB</value>
+  </data>
+  <data name="components.pages.FileUploadComponent.inprogress" xml:space="preserve">
+    <value>Previous upload is in progress. Please wait.</value>
+  </data>
+  <data name="components.pages.FileUploadComponent.samefile.popuptext" xml:space="preserve">
+    <value>Document with the same file name exists for this transaction. Please add a new document.</value>
+  </data>
+  <data name="components.pages.FileUploadComponent.successMessage" xml:space="preserve">
+    <value>File(s) have been successfully uploaded</value>
+  </data>
+  <data name="components.pages.NotFound.Container.Grid.Column.Header_first" xml:space="preserve">
+    <value>Sorry, address not found</value>
+  </data>
+  <data name="components.pages.NotFound.Container.Grid.Column.Header_second" xml:space="preserve">
+    <value>Please ensure that correct link is used to access</value>
+  </data>
+  <data name="components.pages.Unauthorised.Container.Grid.Column.Header_first" xml:space="preserve">
+    <value>Sorry, Access Denied</value>
+  </data>
+  <data name="components.pages.Unauthorised.Container.Grid.Column.Header_second" xml:space="preserve">
+    <value>You are not Authorised to access this page</value>
+  </data>
+  <data name="components.pages.commentsModalComponent.comments.tooltip" xml:space="preserve">
+    <value>Comments (Optional)</value>
+  </data>
+  <data name="components.pages.confirmationComponent.comments.tooltip" xml:space="preserve">
+    <value>Comments (Optional)</value>
+  </data>
+  <data name="components.pages.confirmationComponent.files.tooltip" xml:space="preserve">
+    <value>Attachement (Optional) </value>
+  </data>
+  <data name="components.pages.confirmationComponent.table.SelectOptions" xml:space="preserve">
+    <value>Select...</value>
+  </data>
+  <data name="containers.ConfirmationSupportDocument.index.React.Fragement.CONFIRMATION1" xml:space="preserve">
+    <value>1. This is an interactive file that should be completed in electronic format only.</value>
+  </data>
+  <data name="containers.ConfirmationSupportDocument.index.React.Fragement.CONFIRMATION2" xml:space="preserve">
+    <value>2. For every invoice, please select the applicable option from the drop-down menu. Invoices should match with your records as of </value>
+  </data>
+  <data name="containers.ConfirmationSupportDocument.index.React.Fragement.CONFIRMATION2.Balance" xml:space="preserve">
+    <value>2. Please select the applicable option from the drop-down menu. The balance should match with your records as of </value>
+  </data>
+  <data name="containers.ConfirmationSupportDocument.index.React.Fragement.CONFIRMATION3" xml:space="preserve">
+    <value>3. Click “Sign-off and submit” once finished. You will not be able to make changes.</value>
+  </data>
+  <data name="containers.ConfirmationSupportDocument.index.React.Fragement.label" xml:space="preserve">
+    <value>How to use this form?</value>
+  </data>
+  <data name="containers.ConfirmationSupportDocument.index.React.Fragement.label3" xml:space="preserve">
+    <value>Please complete the Confirmation form with the proper status</value>
+  </data>
+  <data name="containers.ConfirmationSupportDocument.index.title" xml:space="preserve">
+    <value>Confirmation Form</value>
+  </data>
+  <data name="containers.ConfirmationSupportDocument.success.toaster" xml:space="preserve">
+    <value>You have successfully signed off! Please close browser to exit.</value>
+  </data>
+  <data name="containers.ContactSupportDocument.index.React.Fragement.CONTACT1" xml:space="preserve">
+    <value>1. Upload the signed cover letter in PDF format into the drag and drop area.</value>
+  </data>
+  <data name="containers.ContactSupportDocument.index.React.Fragement.CONTACT2" xml:space="preserve">
+    <value>2. Enter the ”Contact Name”, “Email Address” and “Phone” details for each company in the table below. </value>
+  </data>
+  <data name="containers.ContactSupportDocument.index.React.Fragement.CONTACT3" xml:space="preserve">
+    <value>3. Click “Submit” once finished.</value>
+  </data>
+  <data name="containers.ContactSupportDocument.index.React.Fragement.label" xml:space="preserve">
+    <value>Please follow the instructions below</value>
+  </data>
+  <data name="containers.ContactSupportDocument.index.fileUploadError.show.head" xml:space="preserve">
+    <value>Please select one or more invoices</value>
+  </data>
+  <data name="containers.UploadSupportDocument.index.React.Fragement.AP1" xml:space="preserve">
+    <value>1. Select which transaction you would like to upload evidence against.  The selected transaction will be highlighted in grey.</value>
+  </data>
+  <data name="containers.UploadSupportDocument.index.React.Fragement.AP2" xml:space="preserve">
+    <value>2. Upload the documents into the Drag and Drop area related to your selected transaction.</value>
+  </data>
+  <data name="containers.UploadSupportDocument.index.React.Fragement.AP3" xml:space="preserve">
+    <value>3. No need to “Save” after each transfer, as invoices are uploaded immediately. If you’ve accidentally uploaded the wrong invoice, select the document icon to delete.</value>
+  </data>
+  <data name="containers.UploadSupportDocument.index.React.Fragement.AP4" xml:space="preserve">
+    <value>4. Sign out once finished.</value>
+  </data>
+  <data name="containers.UploadSupportDocument.index.React.Fragement.ARIA1" xml:space="preserve">
+    <value>1. Select which transaction you would like to upload evidence against.  The selected transaction will be highlighted in grey.</value>
+  </data>
+  <data name="containers.UploadSupportDocument.index.React.Fragement.ARIA2" xml:space="preserve">
+    <value>2. Upload PDFs only into the Drag and Drop area related to your selected transaction.</value>
+  </data>
+  <data name="containers.UploadSupportDocument.index.React.Fragement.ARIA3" xml:space="preserve">
+    <value>3. No need to “Save” after each transfer, as invoices are uploaded immediately. If you’ve accidentally uploaded the wrong invoice, select the document icon to delete.</value>
+  </data>
+  <data name="containers.UploadSupportDocument.index.React.Fragement.ARIA4" xml:space="preserve">
+    <value>4. Sign out once finished.</value>
+  </data>
+  <data name="containers.UploadSupportDocument.index.React.Fragement.label" xml:space="preserve">
+    <value>The Request for Evidence Application makes it easy to share documents with EY.  Please follow the instructions below to respond to each request:</value>
+  </data>
+  <data name="containers.UploadSupportDocument.index.fileUploadError.show" xml:space="preserve">
+    <value>Please select one or more invoices before uploading supporting documentation.</value>
+  </data>
+  <data name="containers.UploadSupportDocument.index.fileUploadError.show.head" xml:space="preserve">
+    <value>Please select one or more invoices</value>
+  </data>
+  <data name="containers.UploadSupportDocument.index.onDeleteConfirm.Toaster.error" xml:space="preserve">
+    <value>An error occurred while deleting file, please try again</value>
+  </data>
+  <data name="containers.UploadSupportDocument.index.onDeleteConfirm.Toaster.success" xml:space="preserve">
+    <value>File is deleted successfully</value>
+  </data>
+  <data name="email.validator.message" xml:space="preserve">
+    <value>Please enter a valid Email</value>
+  </data>
+  <data name="error.invalidFormat" xml:space="preserve">
+    <value>Format is not valid.</value>
+  </data>
+  <data name="error.requiredField" xml:space="preserve">
+    <value>this is a required field</value>
+  </data>
+  <data name="error.validMail" xml:space="preserve">
+    <value>register a valid email address.</value>
+  </data>
+  <data name="errorBoundary.subtitle" xml:space="preserve">
+    <value>An error has occurred. Sorry...please click refresh in just a moment.</value>
+  </data>
+  <data name="field.validator.message" xml:space="preserve">
+    <value>Please fill required field</value>
+  </data>
+  <data name="topNav.confirmExit" xml:space="preserve">
+    <value>Do you want to exit?</value>
+  </data>
+  <data name="topNav.help" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="topNav.signOut" xml:space="preserve">
+    <value>Sign out</value>
+  </data>
+  <data name="topNav.team" xml:space="preserve">
+    <value>Team</value>
+  </data>
+
+</root>
